@@ -68,6 +68,7 @@
         
         
         <div class="main_wrapper">
+            <div class="child">
             <h1> Create your TiJARAT account</h1>
             <form method="POST" class="formstyle">
                 <ul class="formmembers">
@@ -87,12 +88,13 @@
                 </ul>
                 <div id="checkbox">    
                     <input name="keeploggedin" type="checkbox" value="1">    
-                    <label for="keeploggedin" class="rememberme">Remember me</label>
+                    <label  for="keeploggedin" class="rememberme">Remember me</label>
                 </div >
                 <div id="submit_btn">
                     <input  name="submit" type="submit" value="Sign Up">
                 </div>
-            </form>
+             </form>
+            </div>
         </div>
         
 
