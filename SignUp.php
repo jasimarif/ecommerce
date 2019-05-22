@@ -68,7 +68,6 @@
         
         
         <div class="main_wrapper">
-           
             <h1> Create your TiJARAT account</h1>
             <form method="POST" class="formstyle">
                 <ul class="formmembers">
