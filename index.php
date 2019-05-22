@@ -13,7 +13,8 @@
       <!--font awsome-->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
       
-  
+          <!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
   
        <link rel="stylesheet" type="text/css" href="style.css" media="all">
      <title>Tijarat</title>
@@ -26,7 +27,7 @@
     
     <div class="wrapper"> 
         
-        <nav id="sidebar" class="container-fluid"> 
+        <nav id="sidebar"> 
             <div class="sidebar-header"> 
                 <h3> Categories </h3>
             </div>
@@ -41,9 +42,9 @@
                         <li> <a href="#"> Kurta Shalwar</a> </li>
                         <li> <a href="#"> Waistcoat</a> </li>
                         <li> <a href="#"> Unstitched fabric</a> </li>
-                    
+                       
                     </ul>
-                    </li>
+                     </li>
                 
                 <li> 
                 <a href="#womens_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Women </a>
@@ -97,16 +98,7 @@
       </li>
         
      
-      <li class="nav-item  dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categories
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+      
           
       
       <li class="nav-item ">
@@ -157,8 +149,7 @@
             }); 
           
       });
-      
-      
+    
       
       </script>
       
