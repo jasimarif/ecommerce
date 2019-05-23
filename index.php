@@ -1,4 +1,12 @@
 <!doctype html>
+<?php
+include("functions/functions.php");  
+
+
+
+?>
+
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -22,7 +30,7 @@
     </head>
   <body>
     
-      
+    
         
     
     <div class="wrapper"> 
@@ -33,15 +41,14 @@
             </div>
             <ul class="list-unstyled components">
                 
-                            
+                         
                 <li class="active"> 
-                <a href="#mens_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Men </a>
+                     
+                <a href="#mens_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">  Men </a>
                             
                     <ul class="collapse list-unstyled"  id="mens_menu">
-                        <li> <a href="#"> Top picks </a> </li>
-                        <li> <a href="#"> Kurta Shalwar</a> </li>
-                        <li> <a href="#"> Waistcoat</a> </li>
-                        <li> <a href="#"> Unstitched fabric</a> </li>
+                          <?php  getMen(); ?>
+                        
                        
                     </ul>
                      </li>
@@ -50,10 +57,7 @@
                 <a href="#womens_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Women </a>
                             
                     <ul class="collapse list-unstyled"  id="womens_menu">
-                        <li> <a href="#"> Top picks </a> </li>
-                        <li> <a href="#"> Kurta Shalwar</a> </li>
-                        <li> <a href="#"> Waistcoat</a> </li>
-                        <li> <a href="#"> Unstitched fabric</a> </li>
+                        <?php getwomen(); ?>
                     
                     </ul>
                     </li>
@@ -65,6 +69,7 @@
                 <a href="#"> New Arrival </a>
                 </li>
 
+                    
             </ul>
             
           
