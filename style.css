@@ -105,6 +105,7 @@ a[data-toggle="collapse"] {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
+    
 }
 
 @media (max-width: 768px) {
@@ -119,6 +120,15 @@ a[data-toggle="collapse"] {
     }
 }
 
+.nav-link
+{
+    font-weight: bold;
+    color: black;
+    font-family: 'Poppins' sans-serif;
+    
+}
 
-
-
+.navbar .nav-item
+{
+    padding-left: 40px;
+}
