@@ -24,12 +24,9 @@
         </tr>
          <tr> 
              <td align="right"><b> Product Category:</b> </td>
-            <td> <select>  
-                <option> Top Picks </option>
-                <option> Unstitched </option>
-                <option> Kurta Shalwar </option>
-                <option> Waistcoat </option>
-                <option>  </option>
+            <td> <select name="product_cat">  
+                <option> select a category </option>
+                            <option> <?php  ?> </option>
                 
                 
                 </select> </td>
