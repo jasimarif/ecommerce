@@ -57,4 +57,40 @@ function getwomen()
     }
 }
 
+function getPro()
+
+{
+    global $con;
+    
+    $get_pro= "SELECT * FROM products order by 'product_id' LIMIT 0,10";
+    $run_pro= mysqli_query($con, $get_pro);
+    while($row_pro=mysqli_fetch_array($run_pro))
+    {
+        $pro_id=$row_pro['product_id'];
+        $pro_cat=$row_pro['product_cat'];
+        $pro_type=$row_pro['product_type'];
+        $pro_title=$row_pro['product_title'];
+        $pro_price=$row_pro['product_price'];
+       
+        $pro_image=$row_pro['product_image'];
+
+        echo "
+           
+            
+            <div id=single_product> 
+            <a href='details.php' >  <p>  $pro_title  </p> </a>
+            <a href='details.php'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
+            <p> PKR $pro_price </p>
+            <a href='index.php'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+                
+            </div>
+        
+        ";
+    }
+}
+
+
+
+
+
 ?>
