@@ -57,7 +57,7 @@
         $men_id= $row_men['id'];
         $men_type= $row_men['type'];
 
-        echo "<option value='id'> $men_type </option>" ;
+        echo "<option value='$men_id'> $men_type </option>" ;
     } ?>
                 
                 
