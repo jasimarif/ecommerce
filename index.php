@@ -76,20 +76,20 @@ include("functions/functions.php");
           </nav>
     
         <!--NAVBAR SETTINGS-->   
-      
-          <div class="contents container-fluid">
+      <div id="contents">
+          
           <nav class="navbar navbar-expand-xl navbar-light" style="background-color: white;">
               
-              
+             <div class="container-fluid"> 
                   
     <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm"> 
-        <i class="fas fa-align-justify">  </i>
+        <i class="fas fa-align-justify">  </i> 
 
     </button>
         
         <a class="navbar-brand" href="#">TiJARAT</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon-md"></span>
   </button>
 
   <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -101,11 +101,7 @@ include("functions/functions.php");
         <li class="nav-item  ">
         <a class="nav-link" href="#">My Account <span class="sr-only">(current)</span></a>
       </li>
-        
      
-      
-          
-      
       <li class="nav-item ">
         <a class="nav-link" href="#">Shopping Cart <span class="sr-only">(current)</span></a>
       </li>
@@ -131,9 +127,30 @@ include("functions/functions.php");
   </form>
 
   </div>
-                       
+   </div>                       
 </nav>  
-          </div>   
+         <div id="shopping_cart"> 
+         <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
+        
+        Welcome guest! <b style="color:yellow"> Shopping cart Total Items - Total Price: </b> <a href="cart.php" style="color: blue" > Go to cart</a>
+        
+        
+        </span>
+
+
+         </div> 
+
+
+
+        <div id="product_box"> 
+        
+            <h3 id="products"> Products </h3>
+            
+             <?php getPro(); ?> 
+        
+        </div> 
+      </div>      
+        
 </div>
         
     
