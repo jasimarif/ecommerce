@@ -78,10 +78,10 @@ function getPro()
            
             
             <div id=single_product> 
-            <a href='details.php' >  <p>  $pro_title  </p> </a>
-            <a href='details.php'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
+            <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
+            <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
             <p> PKR $pro_price </p>
-            <a href='index.php'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+            <a href='index.php?pro_id=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
                 
             </div>
         
