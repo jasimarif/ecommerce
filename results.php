@@ -115,8 +115,8 @@ include("functions/functions.php");
     <form method="get" action="results.php"  enctype="multipart/form-data" class="form-inline form-group my-2 my-lg-0">
         
       <input class="form-control mr-sm-2" name="user_query" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn my-2 my-sm-0" name="search" type="submit" id="submit">
-         <i class="fas fa-search"></i>
+      <button class="btn my-2 my-sm-0" name="search" type="submit" id="submit">
+     <i class="fas fa-search"></i>
 
     </button>
     </form>
@@ -147,10 +147,37 @@ include("functions/functions.php");
         
             <h3 id="products"> Products </h3>
             
-             <?php getPro(); 
+             <?php    
+            if (isset($_GET['search']))
+            {
+                $search_query= $_GET['user_query'];
             
-              getMenPro();
-            getWomenPro();
+            
+            $get_pro= "SELECT * FROM products WHERE product_keywords LIKE '%$search_query%'";
+    $run_pro= mysqli_query($con, $get_pro);
+    while($row_pro=mysqli_fetch_array($run_pro))
+    {
+        $pro_id=$row_pro['product_id'];
+        $pro_cat=$row_pro['product_cat'];
+        $pro_type=$row_pro['product_type'];
+        $pro_title=$row_pro['product_title'];
+        $pro_price=$row_pro['product_price'];
+        $pro_image=$row_pro['product_image'];
+
+        echo "
+           
+            
+            <div id=single_product> 
+            <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
+            <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
+            <p> PKR $pro_price </p>
+            <a href='index.php?pro_id=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+                
+            </div>
+        
+        ";
+    }
+            }
           
             ?> 
         
