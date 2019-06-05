@@ -24,7 +24,7 @@ include("functions/functions.php");
           <!-- Scrollbar Custom CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
   
-       <link rel="stylesheet" type="text/css" href="style.css" media="all">
+       <link rel="stylesheet" type="text/css" href="style_details.css" media="all">
      <title>Tijarat</title>
       
     </head>
@@ -78,7 +78,7 @@ include("functions/functions.php");
         <!--NAVBAR SETTINGS-->   
       <div id="contents">
           
-          <nav class="navbar navbar-expand-xl navbar-light" style="background-color: white;">
+          <nav class="navbar navbar-expand-xl navbar-light" id="navbar" style="background-color: white;">
               
              <div class="container-fluid"> 
                   
@@ -91,8 +91,9 @@ include("functions/functions.php");
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon-md"></span>
   </button>
-
-  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                 
+                 
+<div class="collapse navbar-collapse " id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
          <a class="nav-link" href="index.php"> <i class="fas fa-home"></i> Home </a>
@@ -108,15 +109,13 @@ include("functions/functions.php");
       <li class="nav-item ">
         <a class="nav-link" href="#"> <i class="fas fa-shopping-cart"></i>Shopping Cart <span class="sr-only">(current)</span></a>
       </li>
-        
-        
     </ul>
-     
+
     <form method="get" action="results.php"  enctype="multipart/form-data" class="form-inline form-group my-2 my-lg-0">
         
       <input class="form-control mr-sm-2" name="user_query" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn my-2 my-sm-0" name="search" type="submit" id="submit">
-         <i class="fas fa-search"></i>
+      <button class="btn my-2 my-sm-0" name="search" type="submit" id="submit">
+     <i class="fas fa-search"></i>
 
     </button>
     </form>
@@ -128,9 +127,9 @@ include("functions/functions.php");
   </form>
 
   </div>
-   </div>                       
+              </div>                     
 </nav>  
-         <div id="shopping_cart"> 
+         <div id="shopping_cart" > 
          <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
         
         Welcome guest! <b style="color:yellow"> Shopping cart Total Items - Total Price: </b> <a href="cart.php" style="color: blue" > Go to cart</a>
@@ -140,24 +139,145 @@ include("functions/functions.php");
 
 
          </div> 
+       
 
 
-
-        <div id="product_box"> 
-        
-            <h3 id="products"> Products </h3>
+        <div id="table"> 
             
-             <?php getPro(); 
-            
-              getMenPro();
-            getWomenPro();
-          
-            ?> 
+            <table > 
+            <tr> <th scope="col"> Image </th>
+                 <th scope="col"> Specification </th>
+                        
+                </tr>
+                
+                <tr> 
+                <td rowspan="3"> <?php
+            if (isset($_GET['pro_id']))
+            {
+            $product_id= $_GET['pro_id'];
+            $get_pro= "SELECT * FROM products WHERE product_id='$product_id'";
+            $run_pro= mysqli_query($con, $get_pro);
+            while($row_pro=mysqli_fetch_array($run_pro))
+            {
+                               
+                $pro_image=$row_pro['product_image'];
+                $pro_id=$row_pro['product_id'];
         
-        </div> 
+                echo " <img  src='admin_area/product_images/$pro_image' width='350' height='350'  /> ";
+            
+            }}
+
+
+            ?></td>
+                <td >  <?php
+            if (isset($_GET['pro_id']))
+            {
+            $product_id= $_GET['pro_id'];
+            $get_pro= "SELECT * FROM products WHERE product_id='$product_id'";
+            $run_pro= mysqli_query($con, $get_pro);
+            while($row_pro=mysqli_fetch_array($run_pro))
+            {
+                $pro_id=$row_pro['product_id'];
+                
+                $pro_title=$row_pro['product_title'];
+                
+                echo "<b>Product Title:</b> $pro_title  ";
+               
+            }}
+
+
+            ?>
+             </td>
+                </tr>
+                <tr> 
+                
+                <td> 
+                    <?php
+            if (isset($_GET['pro_id']))
+            {
+            $product_id= $_GET['pro_id'];
+            $get_pro= "SELECT * FROM products WHERE product_id='$product_id'";
+            $run_pro= mysqli_query($con, $get_pro);
+            while($row_pro=mysqli_fetch_array($run_pro))
+            {
+                $pro_id=$row_pro['product_id'];
+                $pro_desc=$row_pro['product_desc'];
+               
+                $pro_image=$row_pro['product_image'];
+        
+                echo "<b> Product Description:</b> $pro_desc";
+            }}
+
+
+            ?>
+            
+                    
+                    
+                    
+                    </td>
+                </tr>
+                <tr>
+                
+                <td > 
+                    
+                    <?php
+            if (isset($_GET['pro_id']))
+            {
+            $product_id= $_GET['pro_id'];
+            $get_pro= "SELECT * FROM products WHERE product_id='$product_id'";
+            $run_pro= mysqli_query($con, $get_pro);
+            while($row_pro=mysqli_fetch_array($run_pro))
+            {
+              
+                $pro_price=$row_pro['product_price'];
+               
+            
+        
+                echo " <span> <b> Product Price :</b> $pro_price PKR</span>";
+            }}
+
+
+            ?>
+            
+                    
+                    
+                    </td>    
+                
+                </tr>
+                <tr> 
+                <td align="center">
+                    
+                     <?php
+            if (isset($_GET['pro_id']))
+            {
+            $product_id= $_GET['pro_id'];
+                 
+                echo "
+                <a href='index.php?pro_id=$pro_id' > <button class='btn btn-sm mx-4 btn-primary'> Add to cart </button> </a>";
+            }
+                    ?>
+                    
+                    
+                    </td>
+                
+                    <td align="center"> 
+                    
+                     
+                    <a href='index.php'> <button class='btn btn-sm mx-4 btn-primary'> Go back </button></a>
+                    
+                    </td>
+                
+                </tr>
+            
+            </table>
+            
+            
+  </div>   
+    </div>     
+        
       </div>      
         
-</div>
+
         
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -177,8 +297,6 @@ include("functions/functions.php");
             }); 
           
       });
-          
-          
     
       
       </script>

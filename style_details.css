@@ -2,7 +2,7 @@
     body
     {
         font-family: 'Poppins', sans-serif;
-        background: #fafafa;
+        background-color:#EFF0F5;
 
     }
 
@@ -128,13 +128,7 @@
     }
 
 
-    #product_box
-    {
-
-        text-align: center;
-
-
-    }
+   
 
     #single_product
     {
@@ -183,10 +177,27 @@
       }
     }
 
-#pagination
-{
-    position: relative;
-    top: 10px;
-    left: 10px;
+ td,th {
+    border: 1px solid black;
+     
+       
 }
 
+table
+{
+   background-color: white; 
+    
+    position: relative;
+    left: 20%;
+}
+
+th
+{
+    text-align: center;
+    padding: 20px;
+}
+
+td
+{
+    padding: 20px;
+}
