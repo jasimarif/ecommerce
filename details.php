@@ -253,7 +253,7 @@ include("functions/functions.php");
             $product_id= $_GET['pro_id'];
                  
                 echo "
-                <a href='index.php?pro_id=$pro_id' > <button class='btn btn-sm mx-4 btn-primary'> Add to cart </button> </a>";
+                <a href='index.php?add_cart=$pro_id' > <button class='btn btn-sm mx-4 btn-primary'> Add to cart </button> </a>";
             }
                     ?>
                     

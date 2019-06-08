@@ -4,6 +4,42 @@ $con=mysqli_connect("localhost","root","","ecommerce");
 
 //getting the categories
 
+
+function getIp() {
+    $ip = $_SERVER['REMOTE_ADDR'];
+ 
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+ 
+    return $ip;
+}
+
+function cart()
+{
+    global $con;
+    if (isset($_GET['add_cart']))
+    {
+        $ip=getIp();
+        $pro_id = $_GET['add_cart'];
+        $check_pro= "SELECT * FROM cart WHERE ip_add= '$ip' AND p_id= '$pro_id' ";
+        $run_check= mysqli_query($con, $check_pro);
+        if(mysqli_num_rows($run_check)>0)
+        {
+            echo "Already added";
+        }
+        else
+        {
+            $insert_pro= "INSERT INTO `cart` (p_id,ip_add) values ('$pro_id','$ip')";
+            $run_pro= mysqli_query($con,$insert_pro);
+            echo "Product added to cart";
+            echo "<script> window.open('index.php','_self') </script>";
+        }
+    }
+}
+
 function getCat()
 {
     global $con;
@@ -85,7 +121,7 @@ function getPro()
             <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
             <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
             <p> PKR $pro_price </p>
-            <a href='index.php?pro_id=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+            <a href='index.php?add_cart=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
                 
             </div>
         
@@ -126,7 +162,7 @@ function getMenPro()
             <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
             <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
             <p> PKR $pro_price </p>
-            <a href='index.php?pro_id=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+            <a href='index.php?add_cart=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
                 
             </div>
         
@@ -164,7 +200,7 @@ function getWomenPro()
             <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
             <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
             <p> PKR $pro_price </p>
-            <a href='index.php?pro_id=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+            <a href='index.php?add_cart=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
                 
             </div>
         

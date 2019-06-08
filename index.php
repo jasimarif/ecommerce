@@ -149,9 +149,10 @@ include("functions/functions.php");
             
              <?php getPro(); 
             
-              getMenPro();
-            getWomenPro();
-          
+                getMenPro();
+                getWomenPro();
+                cart();
+            
             ?> 
         
         </div> 
