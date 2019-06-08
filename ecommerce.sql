@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2019 at 01:14 PM
+-- Generation Time: Jun 08, 2019 at 09:41 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -25,13 +25,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brands`
+-- Table structure for table `cart`
 --
 
-CREATE TABLE `brands` (
-  `brand_id` int(100) NOT NULL,
-  `brand_title` text NOT NULL
+CREATE TABLE `cart` (
+  `p_id` int(10) NOT NULL,
+  `ip_add` varchar(255) NOT NULL,
+  `qty` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`p_id`, `ip_add`, `qty`) VALUES
+(3, '::1', 0),
+(4, '::1', 0),
+(5, '::1', 0),
+(7, '::1', 0),
+(8, '::1', 0),
+(2, '::1', 0);
 
 -- --------------------------------------------------------
 
@@ -97,13 +110,43 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_cat`, `product_type`, `product_title`, `product_price`, `product_desc`, `product_image`, `product_keywords`) VALUES
-(2, 2, 'Men', 'Unstitched fabric light blue', 1000, '   ', 'unstiched_fabric2.jpg', 'unstitched '),
-(3, 2, 'Men', 'Unstitched fabric  brown', 1200, '   ', 'unstiched_fabric3.jpg', 'unstitched '),
-(4, 2, 'Men', 'Unstitched fabric grey', 1250, '   ', 'unstiched_fabric 1.jpg', 'unstitched '),
-(5, 2, 'Men', 'Unstitched fabric  cottont', 1500, '   ', 'unstiched_fabric4.jpg', 'unstitched '),
-(6, 4, 'Men', 'Waist coat', 3500, '   ', 'waitcoat-black.jpg', 'waistcoat'),
-(7, 4, 'Men', 'Waist coat maroon', 4000, '   ', 'waitcoat-maroon.jpg', 'waistcoat'),
-(8, 3, 'Men', 'Kurta shalwar black', 3500, '   ', 'black-kurta-white-salwar.jpg', 'kurta shalwar');
+(2, 1, 'Unstiched', 'Unstitched fabric light blue', 1700, 'Unstitched fabric light blue  ', 'unstiched_fabric2.jpg', 'unstitched, blue'),
+(3, 1, 'Unstiched', 'Unstitched fabric gray', 2000, 'Unstitched fabric gray   ', 'unstiched_fabric 1.jpg', 'unstitched gray'),
+(4, 1, 'Unstiched', 'Unstitched fabric  brown', 2000, 'Unstitched fabric  brown  ', 'unstiched_fabric3.jpg', 'unstitched brown'),
+(5, 1, 'Unstiched', 'Unstitched fabric black', 1200, 'Unstitched fabric black   ', 'unstiched_fabric4.jpg', 'unstitched black'),
+(6, 1, 'kurta shalwar', 'Kurta shalwar black', 2500, 'Kurta shalwar black   ', 'black-kurta-white-salwar.jpg', 'kurta shalwar black'),
+(7, 2, 'Kurta Shalwar', 'black', 3000, ' black  ', 'women_stitched_black.jpg', 'black women'),
+(8, 1, 'kurta shalwar', 'Kurta shalwar white', 2500, 'Kurta shalwar white   ', 'kurta-shalwar-white.jpg', 'kurta shalwar white'),
+(9, 1, 'kurta shalwar', 'Kurta shalwar navy blue', 2700, 'Kurta shalwar navy blue   ', 'kurta-shalwar-navy-blue.jpg', 'Kurta shalwar navy blue'),
+(10, 1, 'Waistcoat', 'Waist coat black', 3000, 'Waist coat black   ', 'waitcoat-black.jpg', 'Waist coat black'),
+(11, 1, 'Waistcoat', 'Waist coat maroon', 3500, 'Waist coat maroon   ', 'waitcoat-maroon.jpg', 'Waist coat maroon'),
+(12, 2, 'Top Picks', 'Cotton White', 3700, 'Cotton White ', 'women_stitched_white.jpg', 'Cotton White'),
+(13, 2, 'Top Picks', 'Red sleeveless', 4000, 'Red sleeveless   ', 'women_stitched_sleeveless.jpg', 'Red sleeveless'),
+(14, 2, 'Kurta Shalwar', 'Cotton Brown', 3500, 'Brown kurta shalwar women  ', 'women_stitched.jpg', 'Brown Cotton'),
+(15, 6, '', 'Cotton Red', 5000, 'Cotton Red  ', 'women_unstitched.jpg', 'new'),
+(16, 2, 'Misc', 'Cotton Red', 5000, 'Cotton Red  ', 'women_unstitched.jpg', 'Miscellaneous '),
+(17, 2, 'Top Picks', 'white', 4500, 'white dress', 'women_stitched_white.jpg', 'white dress');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `types`
+--
+
+CREATE TABLE `types` (
+  `type_id` int(100) NOT NULL,
+  `type_title` tinytext
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `types`
+--
+
+INSERT INTO `types` (`type_id`, `type_title`) VALUES
+(1, 'Top Picks'),
+(2, 'Unstiched'),
+(3, 'Waistcoat'),
+(4, 'kurta shalwar');
 
 -- --------------------------------------------------------
 
@@ -131,12 +174,6 @@ INSERT INTO `women` (`id`, `type`) VALUES
 --
 
 --
--- Indexes for table `brands`
---
-ALTER TABLE `brands`
-  ADD PRIMARY KEY (`brand_id`);
-
---
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
@@ -155,6 +192,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`);
 
 --
+-- Indexes for table `types`
+--
+ALTER TABLE `types`
+  ADD PRIMARY KEY (`type_id`);
+
+--
 -- Indexes for table `women`
 --
 ALTER TABLE `women`
@@ -163,12 +206,6 @@ ALTER TABLE `women`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `brands`
---
-ALTER TABLE `brands`
-  MODIFY `brand_id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -186,7 +223,7 @@ ALTER TABLE `men`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `women`
