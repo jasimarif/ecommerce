@@ -146,14 +146,6 @@ include("functions/functions.php");
         <div id="product_box"> 
          
 
-            <h3 id="products"> Products </h3>
-            
-             <?php getPro(); 
-            
-              getMenPro();
-              getWomenPro();
-          
-            ?> 
         
         </div> 
       </div>      
