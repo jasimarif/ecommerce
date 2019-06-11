@@ -2,6 +2,95 @@
 
 $con=mysqli_connect("localhost","root","","ecommerce");
 
+
+///get user ip
+
+function getIP(){
+    $ip = $_SERVER['REMOTE_ADDR'];
+    if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    }
+    elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    return $ip;
+}
+
+//cart Funtion
+
+function cart(){
+    global $con;
+   
+    if(isset($_GET['add_cart'])){
+        $ip = getIP();
+        $pro_id = $_GET['add_cart'];
+        $cartBar_query = "SELECT * FROM `cart` WHERE `ip_add`= '$ip' AND `p_id` ='$pro_id'";
+        $runCart = mysqli_query($con,$cartBar_query);
+        if(mysqli_num_rows($runCart)>0){
+            echo "<script>alert('Item already present');</script>";
+        }
+
+
+        else{ 
+            $cartInsert_query = "INSERT INTO `cart`(`p_id`,`ip_add`) VALUES('$pro_id','$ip')";
+            if($runInsert_query  = mysqli_query($con,$cartInsert_query)){
+                echo "<script> setTimeout('location.reload(true);',10) </script>";                 
+               
+
+            }else{
+                echo "<script>alert('Error adding to cart')</script>";
+            }
+                      
+        }
+
+
+    }
+    
+}
+
+//Total Items in cart
+
+function total_cart(){
+    global $con;
+    $ip = getIP();
+    if(isset($_GET['add_cart'])){
+        $item_query = "SELECT * FROM `cart` WHERE `ip_add` = '$ip'";
+        $runItem_query = mysqli_query($con,$item_query);
+        $count = mysqli_num_rows($runItem_query);
+    }
+    else{
+        $item_query = "SELECT * FROM `cart` WHERE `ip_add` = '$ip'";
+        $runItem_query = mysqli_query($con,$item_query);
+        $count = mysqli_num_rows($runItem_query);
+    }
+    echo $count;
+}
+
+//Total cart price
+function totalCart_price(){
+    global $con;
+    $total = 0;
+        
+        $ip = getIP();
+        $query = "SELECT * FROM `cart` WHERE `ip_add`='$ip'";
+        $runquery = mysqli_query($con,$query);
+        while($result = mysqli_fetch_array($runquery)){
+            $pro_id = $result['p_id'];
+            $pro_query = "SELECT * FROM `products` WHERE `product_id`= '$pro_id'";
+            $runPro_query = mysqli_query($con,$pro_query);
+            while($resultPro = mysqli_fetch_array($runPro_query)){
+                $value =array($resultPro['product_price']) ;
+                $sumValue = array_sum($value);
+                $total+= $sumValue;
+            }
+        }
+        echo $total;
+
+
+    
+}
+
+
 //getting the categories
 
 function getCat()
@@ -85,7 +174,7 @@ function getPro()
             <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
             <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
             <p> PKR $pro_price </p>
-            <a href='index.php?pro_id=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+            <a href='index.php?add_cart=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
                 
             </div>
         
