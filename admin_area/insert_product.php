@@ -58,11 +58,7 @@
             <td> <div id="women">
                 <select name="product_type" id="product_type" required>
                 
-                <option value=""> Select type </option>
-                
-                 
-                    
-                                 
+                <option value=""> Select type </option>                  
                 </select>
                 </div>
             </td>

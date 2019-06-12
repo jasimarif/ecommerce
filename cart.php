@@ -144,80 +144,96 @@ include("functions/functions.php");
 
          <?php cart(); ?>
         <div id="product_box"> 
+        <form>
         <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Remove</th>
-      <th scope="col">Item</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php
-    global $con;
-    $ip = getIP();
-    $cart_query = "SELECT * FROM `cart` WHERE `ip_add`='$ip'";
-    $runCartQuery = mysqli_query($con,$cart_query);
-    while($resultCart= mysqli_fetch_array($runCartQuery)){
-      $cartPro = $resultCart['p_id'];
-      $proQuery = "SELECT * FROM `products` WHERE `product_id` = '$cartPro'";
-      $runProQuery = mysqli_query($con,$proQuery);
-      while($result = mysqli_fetch_array($runProQuery)){
-        $pro_title = $result['product_title'];
-        $pro_image = $result['product_image'];
-        $pro_price = $result['product_price'];
+          <thead>
+            <tr>
+              <th scope="col">Remove</th>
+              <th scope="col">Item</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php
+            global $con;
+            $ip = getIP();
+            $cart_query = "SELECT * FROM `cart` WHERE `ip_add`='$ip'";
+            $runCartQuery = mysqli_query($con,$cart_query);
+            while($resultCart= mysqli_fetch_array($runCartQuery)){
+              $cartPro = $resultCart['p_id'];
+              $proQuery = "SELECT * FROM `products` WHERE `product_id` = '$cartPro'";
+              $runProQuery = mysqli_query($con,$proQuery);
+              while($result = mysqli_fetch_array($runProQuery)){
+                $pro_title = $result['product_title'];
+                $pro_image = $result['product_image'];
+                $pro_price = $result['product_price'];
 
-      
-    
+              
+            
 
-  
-  ?>
-    <tr>
-      <td><input type="checkbox" name="remove[]"/></th>
-      <td>
-        <?php echo $pro_title?><br>
-        <img src="admin_area/product_images/<?php echo $pro_image?>" width='60' height='60'/>
-      </td>
-      <td><input type="text" name="quantity" size = '1'/></td>
-      <td></td>
-      <?php
-       }
-      }
-      ?>
-      
-      
-    </tr>
-      
-  </tbody>
-</table>
-         
-
-        
-        </div> 
-      </div>      
-        
-</div>
-        
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
-      <script>   
-      
-      $(document).ready(function(){
           
-            $('#sidebarCollapse').on('click',function(){
-                
-                $('#sidebar').toggleClass('active')
-                
-                
-            }); 
+          ?>
+            <tr>
+              <td><input type="checkbox" name="remove[]"/></th>
+              <td>
+                <?php echo $pro_title?><br>
+                <img src="admin_area/product_images/<?php echo $pro_image?>" width='60' height='60'/>
+              </td>
+              <td><input type="text" name="quantity" size = '1' /></td>
+              <td><?php price_cart();?></td>
+              <?php
+              }
+              }
+              ?>
           
-      });
           
+        </tr>
+          
+      </tbody>
+    </table>
+        
+        
+        </form>
+        
+    <?php
+          //item quantitiy and total pricing in cart.php
+          function price_cart(){
+            global $con;
+            $qty = $_POST['quantity'];
+            $value = $qty*$pro_price;
+            echo $value;
+            
+          }
+
+    ?> 
+            
+
+            
+            </div> 
+          </div>      
+            
+    </div>
+            
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+          <script>   
+          
+          $(document).ready(function(){
+              
+                $('#sidebarCollapse').on('click',function(){
+                    
+                    $('#sidebar').toggleClass('active')
+                    
+                    
+                }); 
+              
+          });
+              
           
     
       
