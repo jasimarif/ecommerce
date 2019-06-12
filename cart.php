@@ -144,6 +144,53 @@ include("functions/functions.php");
 
          <?php cart(); ?>
         <div id="product_box"> 
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Remove</th>
+      <th scope="col">Item</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php
+    global $con;
+    $ip = getIP();
+    $cart_query = "SELECT * FROM `cart` WHERE `ip_add`='$ip'";
+    $runCartQuery = mysqli_query($con,$cart_query);
+    while($resultCart= mysqli_fetch_array($runCartQuery)){
+      $cartPro = $resultCart['p_id'];
+      $proQuery = "SELECT * FROM `products` WHERE `product_id` = '$cartPro'";
+      $runProQuery = mysqli_query($con,$proQuery);
+      while($result = mysqli_fetch_array($runProQuery)){
+        $pro_title = $result['product_title'];
+        $pro_image = $result['product_image'];
+        $pro_price = $result['product_price'];
+
+      
+    
+
+  
+  ?>
+    <tr>
+      <td><input type="checkbox" name="remove[]"/></th>
+      <td>
+        <?php echo $pro_title?><br>
+        <img src="admin_area/product_images/<?php echo $pro_image?>" width='60' height='60'/>
+      </td>
+      <td><input type="text" name="quantity" size = '1'/></td>
+      <td></td>
+      <?php
+       }
+      }
+      ?>
+      
+      
+    </tr>
+      
+  </tbody>
+</table>
          
 
         
