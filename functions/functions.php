@@ -4,7 +4,7 @@ $con=mysqli_connect("localhost","root","","ecommerce");
 
 //getting the categories
 
-
+// getting the Ip address
 function getIp() {
     $ip = $_SERVER['REMOTE_ADDR'];
  
@@ -17,6 +17,7 @@ function getIp() {
     return $ip;
 }
 
+//adding to cart
 function cart()
 {
     global $con;
@@ -39,6 +40,83 @@ function cart()
         }
     }
 }
+
+//displaying all products in the product page
+function all_pro_cart()
+{
+    global $con;
+    if (isset($_GET['add_cart']))
+    {
+        $ip=getIp();
+        $pro_id = $_GET['add_cart'];
+        $check_pro= "SELECT * FROM cart WHERE ip_add= '$ip' AND p_id= '$pro_id' ";
+        $run_check= mysqli_query($con, $check_pro);
+        if(mysqli_num_rows($run_check)>0)
+        {
+            echo "Already added";
+        }
+        else
+        {
+            $insert_pro= "INSERT INTO `cart` (p_id,ip_add) values ('$pro_id','$ip')";
+            $run_pro= mysqli_query($con,$insert_pro);
+            echo "Product added to cart";
+            echo "<script> window.open('all_products.php','_self') </script>";
+        }
+    }
+}
+
+
+//counting the total items
+function totalItems()
+{
+    if (isset($_GET['add_cart']))
+    {
+        global $con;
+        $ip= getIp();
+        $get_items= "SELECT * FROM cart WHERE ip_add='$ip'";
+        $run_items=mysqli_query($con,$get_items);
+        $count_items= mysqli_num_rows($run_items);
+        
+    }
+    else
+    {
+        global $con;
+        $ip= getIp();
+        $get_items= "SELECT * FROM cart WHERE ip_add='$ip'";
+        $run_items=mysqli_query($con,$get_items);
+        $count_items= mysqli_num_rows($run_items);
+    }
+    
+    echo $count_items;
+}
+
+//getting the total price
+
+function totalPrice()
+{
+    $total=0;
+    global $con;
+    $ip=getIp();
+    $sel_price= "SELECT * FROM cart where ip_add='$ip'";
+    $run_price=mysqli_query($con, $sel_price);
+    while($p_price=mysqli_fetch_array($run_price))
+    {
+        $pro_id=$p_price['p_id'];
+        $pro_query= "SELECT * FROM products WHERE product_id='$pro_id'";
+        $run_query=mysqli_query($con,$pro_query);
+        while($pp_price=mysqli_fetch_array($run_query))
+        {
+            $product_price=array($pp_price['product_price']);
+            $sum=array_sum($product_price);
+            $total+=$sum;
+            
+        }
+            
+    }
+    echo "PKR $total ";
+
+}
+
 
 function getCat()
 {

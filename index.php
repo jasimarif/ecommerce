@@ -106,7 +106,7 @@ include("functions/functions.php");
       </li>
      
       <li class="nav-item ">
-        <a class="nav-link" href="#"> <i class="fas fa-shopping-cart"></i>Shopping Cart <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="cart.php"> <i class="fas fa-shopping-cart"></i>Shopping Cart <span class="sr-only">(current)</span></a>
       </li>
         
         
@@ -123,8 +123,8 @@ include("functions/functions.php");
          
       
   <form class="form-inline">
-    <button class="btn btn-sm mx-4 btn-outline-success" type="button">Sign Up</button>
-    <button class="btn btn-sm btn-outline-primary" type="button">Sign In</button>
+    <a href="customer_register.php"> <button class="btn btn-sm mx-4 btn-outline-success" type="button">Sign Up</button></a>
+      <a href="customer_login.php"> <button class="btn btn-sm btn-outline-primary" type="button">Sign In</button> </a>
   </form>
 
   </div>
@@ -133,7 +133,7 @@ include("functions/functions.php");
          <div id="shopping_cart"> 
          <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
         
-        Welcome guest! <b style="color:yellow"> Shopping cart Total Items - Total Price: </b> <a href="cart.php" style="color: blue" > Go to cart</a>
+        Welcome guest! <b style="color:yellow"> Shopping cart Total Items: <?php totalItems(); ?> - Total Price:<?php totalPrice();?> </b> <a href="cart.php" style="color: blue" > Go to cart</a>
         
         
         </span>

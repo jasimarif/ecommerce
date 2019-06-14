@@ -124,7 +124,7 @@ include("functions/functions.php");
       
   <form class="form-inline">
     <button class="btn btn-sm mx-4 btn-outline-success" type="button">Sign Up</button>
-    <button class="btn btn-sm btn-outline-primary" type="button">Sign In</button>
+    <a href="customer_login.php"><button class="btn btn-sm btn-outline-primary" type="button">Sign In</button></a> 
   </form>
 
   </div>
@@ -133,7 +133,7 @@ include("functions/functions.php");
          <div id="shopping_cart"> 
          <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
         
-        Welcome guest! <b style="color:yellow"> Shopping cart Total Items - Total Price: </b> <a href="cart.php" style="color: blue" > Go to cart</a>
+         Welcome guest! <b style="color:yellow"> Shopping cart Total Items: <?php totalItems(); ?> - Total Price:<?php totalPrice();?> </b> <a href="cart.php" style="color: blue" > Go to cart</a>
         
         
         </span>
@@ -148,7 +148,7 @@ include("functions/functions.php");
             <h3 id="products"> Products </h3>
             
              <?php 
-               $get_pro= "SELECT * FROM products limit 0 , 7";
+               $get_pro= "SELECT * FROM products";
     $run_pro= mysqli_query($con, $get_pro);
     while($row_pro=mysqli_fetch_array($run_pro))
     {
@@ -166,16 +166,19 @@ include("functions/functions.php");
             <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
             <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
             <p> PKR $pro_price </p>
-            <a href='index.php?pro_id=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+            <a href='all_products.php?add_cart=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
                 
             </div>
         
         ";
     }
+           all_pro_cart();
         
             ?> 
         
-        </div> 
+<!--
+  
+</div> 
           <div id="pagination">
           <ul class="pagination">
   <li class="page-item"><a class="page-link" href="#products">Previous</a></li>
@@ -188,7 +191,8 @@ include("functions/functions.php");
       </div>      
         
 </div>
-        
+                  
+-->
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
