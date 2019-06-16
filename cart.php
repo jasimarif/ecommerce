@@ -227,7 +227,7 @@ include("functions/functions.php");
                     
                         if($run_delete)
                         {
-                            echo "<script>window.open('cart.php'.'_self') </script>";
+                            echo "<script>window.open('cart.php','_self') </script>";
                         }
                     }
                     
