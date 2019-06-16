@@ -4,6 +4,7 @@ include("functions/functions.php");
 
 
 
+
 ?>
 
 
@@ -152,10 +153,10 @@ include("functions/functions.php");
    
 <div class="container" id="body" style="padding-top:70px;">
   
-    <form class="form-signin" method="post" action="">
+    <form  method="post" action="customer_register.php" enctype="multipart/form-data" class="form-signin">
       
       <h1 class="h3 mb-3 font-weight-normal text-center">Create an account</h1>
-      <label for="inputName" class="sr-only"  >Customer name</label>
+      <label  class="sr-only"  >Customer name</label>
       <input type="text" id="inputEmail" class="form-control" placeholder="Name" name="c_name" required autofocus>
       <label for="inputEmail" class="sr-only" >Email</label>
       <input type="email" id="inputemail" class="form-control" placeholder="Email" name="c_email" required>
@@ -204,14 +205,40 @@ include("functions/functions.php");
     
       
       </script>
-      
-      
-      
-      
-      
-      
-      
-  
-    
+ 
     </body>
+
+<?php
+
+if (isset($_POST['register']))
+{
+   
+    global $con;
+    $ip=getIp();
+    $c_name=$_POST['c_name'];
+    $c_email=$_POST['c_email'];
+    $c_pass=$_POST['c_pass'];
+    $c_country=$_POST['c_country'];
+    $c_city=$_POST['c_city'];
+    $c_contact=$_POST['c_contact'];
+    $c_address=$_POST['c_address'];
+    
+     $insert_c="INSERT INTO `customers` (customer_ip,customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address) values ('$ip','$c_name','$c_email','$c_pass','$c_country','$c_city','$c_contact','$c_address')";
+    
+    $run_c=mysqli_query($con, $insert_c);
+    if($run_c)
+    {
+        echo "<script> alert('Account added successfully')</script>";
+    }
+   
+    
+    
+}
+
+
+
+
+?>
+
 </html>
+
