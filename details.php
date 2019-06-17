@@ -127,152 +127,89 @@ include("functions/functions.php");
   </form>
 
   </div>
-              </div>                     
+ </div>                     
 </nav>  
-         <div id="shopping_cart" > 
-         <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
+
+
+
+
+        <div id="shopping_cart" > 
+          <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
+           Welcome guest! <b style="color:yellow"> Shopping cart Total Items - Total Price: </b> <a href="cart.php" style="color: blue" > Go to cart</a>
+          </span>
+        </div>
         
-        Welcome guest! <b style="color:yellow"> Shopping cart Total Items - Total Price: </b> <a href="cart.php" style="color: blue" > Go to cart</a>
-        
-        
-        </span>
+        <div class="container" style="margin-top: 50px;">
+            <div class="container">
+                <div class="row">
+                  <div class="col-sm-6">
+                      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                          <div class="carousel-inner">
+                            <div class="carousel-item active">
+                              <img class="d-block w-100" src="admin_area/product_images/black-kurta-white-salwar.jpg" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                              <img class="d-block w-100" src="admin_area/product_images/kurta-shalwar-navy-blue.jpg" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                              <img class="d-block w-100" src="admin_area/product_images/unstiched_fabric 1.jpg" alt="Third slide">
+                            </div>
+                          </div>
+                          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="box">
+                      <h1 class="text-center">kurta-shalwar-navy-blue</h1>
+                      <form action="details.php" method="POST" class="form-horizontal">
+                        <div class="form-group">
+                          <label class="col-md-5 control-label">Product Quantity</label>
+                          <div class="col-md-7">
+                            <select name="product_qty" class="form-control">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-5 control-label">Product Quantity</label>
+                            <div class="col-md-7">
+                              <select name="product_qty" class="form-control">
+                                <option>Select Size</option>
+                                <option>small</option>
+                                <option>medium</option>
+                                <option>large</option>
+                              </select>
+                            </div>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+        </div>
+          
+          
+     
 
 
          </div> 
        
 
 
-        <div id="table"> 
-            
-            <table > 
-            <tr> <th scope="col"> Image </th>
-                 <th scope="col"> Specification </th>
-                        
-                </tr>
-                
-                <tr> 
-                <td rowspan="3"> <?php
-            if (isset($_GET['pro_id']))
-            {
-            $product_id= $_GET['pro_id'];
-            $get_pro= "SELECT * FROM products WHERE product_id='$product_id'";
-            $run_pro= mysqli_query($con, $get_pro);
-            while($row_pro=mysqli_fetch_array($run_pro))
-            {
-                               
-                $pro_image=$row_pro['product_image'];
-                $pro_id=$row_pro['product_id'];
-        
-                echo " <img  src='admin_area/product_images/$pro_image' width='350' height='350'  /> ";
-            
-            }}
-
-
-            ?></td>
-                <td >  <?php
-            if (isset($_GET['pro_id']))
-            {
-            $product_id= $_GET['pro_id'];
-            $get_pro= "SELECT * FROM products WHERE product_id='$product_id'";
-            $run_pro= mysqli_query($con, $get_pro);
-            while($row_pro=mysqli_fetch_array($run_pro))
-            {
-                $pro_id=$row_pro['product_id'];
-                
-                $pro_title=$row_pro['product_title'];
-                
-                echo "<b>Product Title:</b> $pro_title  ";
-               
-            }}
-
-
-            ?>
-             </td>
-                </tr>
-                <tr> 
-                
-                <td> 
-                    <?php
-            if (isset($_GET['pro_id']))
-            {
-            $product_id= $_GET['pro_id'];
-            $get_pro= "SELECT * FROM products WHERE product_id='$product_id'";
-            $run_pro= mysqli_query($con, $get_pro);
-            while($row_pro=mysqli_fetch_array($run_pro))
-            {
-                $pro_id=$row_pro['product_id'];
-                $pro_desc=$row_pro['product_desc'];
-               
-                $pro_image=$row_pro['product_image'];
-        
-                echo "<b> Product Description:</b> $pro_desc";
-            }}
-
-
-            ?>
-            
-                    
-                    
-                    
-                    </td>
-                </tr>
-                <tr>
-                
-                <td > 
-                    
-                    <?php
-            if (isset($_GET['pro_id']))
-            {
-            $product_id= $_GET['pro_id'];
-            $get_pro= "SELECT * FROM products WHERE product_id='$product_id'";
-            $run_pro= mysqli_query($con, $get_pro);
-            while($row_pro=mysqli_fetch_array($run_pro))
-            {
-              
-                $pro_price=$row_pro['product_price'];
-               
-            
-        
-                echo " <span> <b> Product Price :</b> $pro_price PKR</span>";
-            }}
-
-
-            ?>
-            
-                    
-                    
-                    </td>    
-                
-                </tr>
-                <tr> 
-                <td align="center">
-                    
-                     <?php
-            if (isset($_GET['pro_id']))
-            {
-            $product_id= $_GET['pro_id'];
-                 
-                echo "
-                <a href='index.php?add_cart=$pro_id' > <button class='btn btn-sm mx-4 btn-primary'> Add to cart </button> </a>";
-            }
-                    ?>
-                    
-                    
-                    </td>
-                
-                    <td align="center"> 
-                    
-                     
-                    <a href='index.php'> <button class='btn btn-sm mx-4 btn-primary'> Go back </button></a>
-                    
-                    </td>
-                
-                </tr>
-            
-            </table>
-            
-            
-  </div>   
+          
     </div>     
         
       </div>      
