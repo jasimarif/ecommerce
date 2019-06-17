@@ -1,19 +1,12 @@
+
 <html>
     
     <?php
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/functions
    include("db.php");
         
 ?>
     
 <head>
-<<<<<<< HEAD
-    
-    <title> Insert products</title>
-=======
      
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -21,7 +14,6 @@
     <title> Insert products</title>
      
      
->>>>>>> origin/functions
     
     </head>
 <body>
@@ -32,51 +24,12 @@
     <table align="center" width=750px border="2" bgcolor="skyblue" >
         
         <tr align="center" > 
-<<<<<<< HEAD
-            <td colspan="8"><h2> Insert New Post here </h2> </td>
-=======
             <td colspan="8"><h2> Insert New Product here </h2> </td>
->>>>>>> origin/functions
         
         </tr>
         
         <tr> 
             <td align="right"><b> Product Title: </b></td>
-<<<<<<< HEAD
-            <td> <input type="text" name="product_title" size="60" required > </td>
-        <tr> 
-             <td align="right"> <b>Product type:</b> </td>
-            <td> <select name="product_type" id="product_type" required>
-                <option> Men </option>
-                <option> Women </option>
-                <option> Kids </option>
-                <option> New Arrival </option>
-                
-                </select>
-            
-            </td>
-        
-            
-        </tr>
-            
-        
-         <tr> 
-             <td align="right"><b> Product Category:</b> </td>
-            <td> <select  name="product_cat" required>  
-                <option> Select a category </option>
-                
-                <?php 
-    $get_men= "Select * FROM `men` ";
-
-    $query_men = mysqli_query($con, $get_men);
-
-    while ($row_men=mysqli_fetch_array($query_men))
-    {
-        $men_id= $row_men['id'];
-        $men_type= $row_men['type'];
-
-        echo "<option value='id'> $men_type </option>" ;
-=======
             <td> <input type="text" name="product_title" size="60" required> </td>
              <tr> 
              <td align="right"><b> Product category:</b> </td>
@@ -91,7 +44,6 @@
         $cat_id= $row_cat['cat_id'];
         $cat_title= $row_cat['cat_title'];
         echo "<option value='$cat_id'> $cat_title </option>" ;
->>>>>>> origin/functions
     } ?>
                 
                 
@@ -99,8 +51,6 @@
         
             
         </tr>
-<<<<<<< HEAD
-=======
                   
         <tr> 
             
@@ -122,7 +72,6 @@
         </tr>
         
         
->>>>>>> origin/functions
          
          <tr> 
              <td align="right"><b> Product Image: </b></td>
@@ -163,13 +112,6 @@
     
     <?php 
     
-<<<<<<< HEAD
-    //getting the image from fields
-    
-   
-    
-=======
->>>>>>> origin/functions
     if(isset($_POST['insert_post']))
     {
         
@@ -183,30 +125,6 @@
        
          $product_image = $_FILES['product_image'] ['name'];
          $product_image_tmp = $_FILES['product_image']['tmp_name'];
-<<<<<<< HEAD
-         move_uploaded_file($product_image_tmp, "product_images/$product_image") ;
-        
-       $insert_product="INSERT into products (product_cat,product_type,product_title,product_price,product_desc,product_image,product_keywords) 
-        values ('$product_cat','$product_type','$product_title','$product_price','$product_desc','$product_image','$product_keywords')";
-     
-        $insert_pro=mysqli_query($con,$insert_product);
-        if($insert_pro)
-        {
-            echo "<script> alert('The product has been inserted!')</script>";
-            echo "<script> window.open('insert_product.php','_self')</script>";       
-        }
-      
-        
-
-    }
-    
-    
-    
-    ?>
-    
-    
-    
-=======
         
         move_uploaded_file($product_image_tmp, "product_images/$product_image");
         
@@ -242,8 +160,8 @@
         }
     
     </script>
->>>>>>> origin/functions
     
     </body>
 
 </html>
+

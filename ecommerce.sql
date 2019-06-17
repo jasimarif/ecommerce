@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2019 at 09:41 AM
+-- Generation Time: Jun 16, 2019 at 10:52 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -39,12 +39,15 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`p_id`, `ip_add`, `qty`) VALUES
+(2, '::1', 0),
 (3, '::1', 0),
 (4, '::1', 0),
 (5, '::1', 0),
 (7, '::1', 0),
-(8, '::1', 0),
-(2, '::1', 0);
+(9, '::1', 0),
+(10, '::1', 0),
+(11, '::1', 0),
+(13, '::1', 0);
 
 -- --------------------------------------------------------
 
@@ -66,6 +69,31 @@ INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
 (2, 'Women'),
 (5, 'Kids'),
 (6, 'New Arrival');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `customer_id` int(100) NOT NULL,
+  `customer_ip` varchar(255) NOT NULL,
+  `customer_name` text NOT NULL,
+  `customer_email` varchar(100) NOT NULL,
+  `customer_pass` varchar(100) NOT NULL,
+  `customer_country` text NOT NULL,
+  `customer_city` text NOT NULL,
+  `customer_contact` varchar(255) NOT NULL,
+  `customer_address` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`customer_id`, `customer_ip`, `customer_name`, `customer_email`, `customer_pass`, `customer_country`, `customer_city`, `customer_contact`, `customer_address`) VALUES
+(1, '::1', 'jasim ali', 'jasimarifali@gmail.com', '54646', 'Pakistan', 'karachi', '3472540245', 'r121/1 sector 14a north nazimabad, same');
 
 -- --------------------------------------------------------
 
@@ -174,10 +202,22 @@ INSERT INTO `women` (`id`, `type`) VALUES
 --
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`p_id`);
+
+--
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`cat_id`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`customer_id`);
 
 --
 -- Indexes for table `men`
@@ -214,6 +254,12 @@ ALTER TABLE `categories`
   MODIFY `cat_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `customer_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `men`
 --
 ALTER TABLE `men`
@@ -223,7 +269,7 @@ ALTER TABLE `men`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `women`
