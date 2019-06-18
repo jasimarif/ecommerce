@@ -138,68 +138,163 @@ include("functions/functions.php");
            Welcome guest! <b style="color:yellow"> Shopping cart Total Items - Total Price: </b> <a href="cart.php" style="color: blue" > Go to cart</a>
           </span>
         </div>
-        
-        <div class="container" style="margin-top: 50px;">
-            <div class="container">
-                <div class="row">
-                  <div class="col-sm-6">
-                      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                          <div class="carousel-inner">
-                            <div class="carousel-item active">
-                              <img class="d-block w-100" src="admin_area/product_images/black-kurta-white-salwar.jpg" alt="First slide">
+          
+        <div class="container" style="margin-top: 50px;"> <!--container starts-->
+            <div class="container"><!--CONTAINER STARTS-->
+              <div class="col-md-9"><!--COL MD 9 STARTS-->
+                  <div class="row" id="product_main"><!--ROW STARTS-->
+                      <div class="col-sm-6"><!--COL SM6 STARTS-->
+                          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"><!--carouselExampleControls STARTS-->
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                  <img class="d-block w-100" src="admin_area/product_images/black-kurta-white-salwar.jpg" alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                  <img class="d-block w-100" src="admin_area/product_images/kurta-shalwar-navy-blue.jpg" alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                  <img class="d-block w-100" src="admin_area/product_images/unstiched_fabric 1.jpg" alt="Third slide">
+                                </div>
+                              </div>
+                              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div><!--carouselExampleControls ENDS-->
+                      </div><!--COL SM6 ENDS-->
+                      <div class="col-sm-6"><!--COL SM6 STARTS-->
+                        <div class="box"><!--BOX STARTS-->
+                          <h1 class="text-center">kurta-shalwar-navy-blue</h1>
+                          <form action="details.php" method="POST" class="form-horizontal"><!--form starts-->
+                            <div class="form-group row">
+                              <label class="col-md-5 control-label">Product Quantity</label>
+                              <div class="col-md-7">
+                                <select name="product_qty" class="form-control">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                </select>
+                              </div>
                             </div>
-                            <div class="carousel-item">
-                              <img class="d-block w-100" src="admin_area/product_images/kurta-shalwar-navy-blue.jpg" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                              <img class="d-block w-100" src="admin_area/product_images/unstiched_fabric 1.jpg" alt="Third slide">
-                            </div>
-                          </div>
-                          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                          </a>
-                          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                          </a>
-                        </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="box">
-                      <h1 class="text-center">kurta-shalwar-navy-blue</h1>
-                      <form action="details.php" method="POST" class="form-horizontal">
-                        <div class="form-group">
-                          <label class="col-md-5 control-label">Product Quantity</label>
-                          <div class="col-md-7">
-                            <select name="product_qty" class="form-control">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-5 control-label">Product Quantity</label>
-                            <div class="col-md-7">
-                              <select name="product_qty" class="form-control">
-                                <option>Select Size</option>
-                                <option>small</option>
-                                <option>medium</option>
-                                <option>large</option>
-                              </select>
-                            </div>
-                          </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div>
+                            <div class="form-group row">
+                                <label class="col-md-5 control-label">Product size</label>
+                                <div class="col-md-7">
+                                  <select name="product_qty" class="form-control">
+                                    <option>Select Size</option>
+                                    <option>small</option>
+                                    <option>medium</option>
+                                    <option>large</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <p class="price">50 Rs.</p>
+                              <p class="text-center buttons">
+                                  <button class="btn btn-primary" type="submit">
+                                      <i class="fas fa-shopping-cart"></i> Add to Cart
+                                  </button>
+                              </p>
+                          </form><!--form ends-->
+                        </div><!--BOX ENDS-->
+                              <div class="row row-eq-height" id="thumbs"><!--row starts-->
+                                <div class="col-4"><!--col xs 4 starts-->
+                                  <a href="#" class="thumb">
+                                    <img src="admin_area/product_images/black-kurta-white-salwar.jpg" class="img-fluid"/>
+                                  </a>
+                                </div><!--col xs 4 ends-->
+                                <div class="col-4"><!--col xs 4 starts-->
+                                  <a href="#" class="thumb">
+                                    <img src="admin_area/product_images/kurta-shalwar-navy-blue.jpg" class="img-fluid"/>
+                                  </a>
+                                </div><!--col xs 4 ends-->
+                                <div class="col-4"><!--col xs 4 starts-->
+                                  <a href="#" class="thumb">
+                                    <img src="admin_area/product_images/unstiched_fabric 1.jpg" class="img-fluid" />
+                                  </a>
+                                </div><!--col xs 4 ends-->
+                              </div><!--row ends-->   
 
-        </div>
+                      </div><!--COL SM6 ENDS-->
+                    </div><!--ROW ENDS-->
+
+                      <div class="box mt-5" id="details"><!--box starts-->
+                        <p><!--p starts-->
+                          <h4>Product details</h4>
+                          <p>
+                              Strewed assisted a since winningly crooked neglectful since and by pouting following wherever cumulative despite gosh alas ponderous and mannishly rabbit and frivolous kookaburra and where much placed that and hence met stuck.
+
+                              Expectantly cardinal a demonstrably enthusiastic smugly past lustily hence rat watchful that dwelled so tardily much well
+                          
+                          </p>
+                          <h4>Size</h4>
+                          <ul>
+                            <li>Small</li>
+                            <li>Medium</li>
+                            <li>Large</li>
+                          </ul>
+                        </p><!--p ends-->
+                        <hr>
+                          
+                      </div><!--box ends-->
+                      <div class="row row-eq-height"><!--row same height row starts-->
+                        <div class="col-md-3 col-sm-6"><!--col-md-3 col-sm-6 starts-->
+                          <div class="box same-height headline"><!--box same-height headline starts-->
+                            <h3 class="text-center">People also viewed these products</h3>
+                          </div><!--box same-height headline ends-->
+                        </div><!--col-md-3 col-sm-6 ends-->
+                        <div class="center-responsive col-md-3 col-sm-6"><!--center-responsive col-md-3 col-sm-6 starts-->
+                          <div class="product same-height"><!--product same-height starts-->
+                            <a href="details.php">
+                              <img src="admin_area/product_images/black-kurta-white-salwar.jpg" class="img-fluid">
+                            </a>
+                            <div class="text"> <!--text starts-->
+                              <h3><a href="details.php">kurta-shalwar-navy-blue</a></h3>
+                              <p class="price">50 Rs.</p>
+                            </div><!--text ends-->
+
+                            
+                          </div><!--product same-height ends-->
+                        </div><!--center-responsive col-md-3 col-sm-6 ends-->
+                        <div class="center-responsive col-md-3 col-sm-6"><!--center-responsive col-md-3 col-sm-6 starts-->
+                          <div class="product same-height"><!--product same-height starts-->
+                            <a href="details.php">
+                              <img src="admin_area/product_images/black-kurta-white-salwar.jpg" class="img-fluid">
+                            </a>
+                            <div class="text"> <!--text starts-->
+                              <h3><a href="details.php">kurta-shalwar-navy-blue</a></h3>
+                              <p class="price">50 Rs.</p>
+                            </div><!--text ends-->
+
+                            
+                          </div><!--product same-height ends-->
+                        </div><!--center-responsive col-md-3 col-sm-6 ends-->
+                        <div class="center-responsive col-md-3 col-sm-6"><!--center-responsive col-md-3 col-sm-6 starts-->
+                          <div class="product same-height"><!--product same-height starts-->
+                            <a href="details.php">
+                              <img src="admin_area/product_images/black-kurta-white-salwar.jpg" class="img-fluid">
+                            </a>
+                            <div class="text"> <!--text starts-->
+                              <h3><a href="details.php">kurta-shalwar-navy-blue</a></h3>
+                              <p class="price">50 Rs.</p>
+                            </div><!--text ends-->
+
+                            
+                          </div><!--product same-height ends-->
+                        </div><!--center-responsive col-md-3 col-sm-6 ends-->
+                      </div><!--row same height row endsss-->
+
+                    
+                  </div><!--COL MD 9 STARTS-->
+              </div><!--CONTAINER STARTS-->
+                
+          </div><!--container ends-->
+
+        </div> 
           
           
      
