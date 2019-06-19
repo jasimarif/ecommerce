@@ -79,6 +79,18 @@
         
             
         </tr>
+                 <tr> 
+             <td align="right"><b> Product Image2: </b></td>
+            <td> <input type="file" name="product_image_2" required> </td>
+        
+            
+        </tr>
+                 <tr> 
+             <td align="right"><b> Product Image3: </b></td>
+            <td> <input type="file" name="product_image_3" required> </td>
+        
+            
+        </tr>
          <tr> 
              <td align="right"><b> Product Description: </b></td>
              <td> <textarea cols="20" rows="10" name="product_desc">   </textarea> </td>
@@ -125,11 +137,17 @@
        
          $product_image = $_FILES['product_image'] ['name'];
          $product_image_tmp = $_FILES['product_image']['tmp_name'];
+         $product_image_2 = $_FILES['product_image_2'] ['name'];
+         $product_image_tmp_2 = $_FILES['product_image_2']['tmp_name'];
+         $product_image_3 = $_FILES['product_image_3'] ['name'];
+         $product_image_tmp_3 = $_FILES['product_image_3']['tmp_name'];
         
         move_uploaded_file($product_image_tmp, "product_images/$product_image");
+         move_uploaded_file($product_image_tmp_2, "product_images/$product_image_2");
+         move_uploaded_file($product_image_tmp_3, "product_images/$product_image_3");
         
-        $insert_product="INSERT into `products` (product_cat,product_type,product_title,product_price,product_desc,product_image,product_keywords) 
-        values ('$product_cat','$product_type','$product_title','$product_price','$product_desc','$product_image','$product_keywords')";
+        $insert_product="INSERT into `products` (product_cat,product_type,product_title,product_price,product_desc,product_image,product_image_2,product_image_3,product_keywords) 
+        values ('$product_cat','$product_type','$product_title','$product_price','$product_desc','$product_image','$product_image_2','$product_image_3','$product_keywords')";
        
         $insert_pro= mysqli_query($con,$insert_product);
         
