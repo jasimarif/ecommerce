@@ -1,9 +1,6 @@
 <!doctype html>
 <?php
-include("functions/functions.php");  
-
-
-
+include("functions/functions.php");
 ?>
 
 
@@ -138,6 +135,34 @@ include("functions/functions.php");
            Welcome guest! <b style="color:yellow"> Shopping cart Total Items - Total Price: </b> <a href="cart.php" style="color: blue" > Go to cart</a>
           </span>
         </div>
+        <?php
+          $product_title = "";
+          $product_desc = "";
+          $product_image = "";
+          $product_image2 = "";
+          $product_image3 = "";
+          $product_price = "";
+          
+          
+
+
+          if(isset($_GET['pro_id'])){
+            $product_id=$_GET['pro_id'];
+            $details_query= "SELECT * FROM `products` WHERE `product_id`='$product_id'";
+            $run_details_query = mysqli_query($con,$details_query);
+            while($result=mysqli_fetch_array($run_details_query)){
+              $product_title = $result['product_title'];
+              $product_desc = $result['product_desc'];
+              $product_image = $result['product_image'];
+              $product_image2 = $result['product_image_2'];
+              $product_image3 = $result['product_image_3'];
+              $product_price = $result['product_price'];
+            }
+
+          }
+        
+        
+        ?>
           
         <div class="container" style="margin-top: 50px;"> <!--container starts-->
             <div class="container"><!--CONTAINER STARTS-->
@@ -147,13 +172,13 @@ include("functions/functions.php");
                           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"><!--carouselExampleControls STARTS-->
                               <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                  <img class="d-block w-100" src="admin_area/product_images/black-kurta-white-salwar.jpg" alt="First slide">
+                                  <img class="d-block w-100" src="admin_area/product_images/<?php echo $product_image?>" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                  <img class="d-block w-100" src="admin_area/product_images/kurta-shalwar-navy-blue.jpg" alt="Second slide">
+                                  <img class="d-block w-100" src="admin_area/product_images/<?php echo $product_image2?>" alt="Second slide">
                                 </div>
                                 <div class="carousel-item">
-                                  <img class="d-block w-100" src="admin_area/product_images/unstiched_fabric 1.jpg" alt="Third slide">
+                                  <img class="d-block w-100" src="admin_area/product_images/<?php echo $product_image3?>" alt="Third slide">
                                 </div>
                               </div>
                               <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -168,7 +193,7 @@ include("functions/functions.php");
                       </div><!--COL SM6 ENDS-->
                       <div class="col-sm-6"><!--COL SM6 STARTS-->
                         <div class="box"><!--BOX STARTS-->
-                          <h1 class="text-center">kurta-shalwar-navy-blue</h1>
+                          <h1 class="text-center"><?php echo $product_title?></h1>
                           <form action="details.php" method="POST" class="form-horizontal"><!--form starts-->
                             <div class="form-group row">
                               <label class="col-md-5 control-label">Product Quantity</label>
@@ -193,10 +218,13 @@ include("functions/functions.php");
                                   </select>
                                 </div>
                               </div>
-                              <p class="price">50 Rs.</p>
+                              <p class="price"><?php echo $product_price?> Rs.</p>
                               <p class="text-center buttons">
                                   <button class="btn btn-primary" type="submit">
-                                      <i class="fas fa-shopping-cart"></i> Add to Cart
+                                    <a href="#">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                    </a>
+                                      
                                   </button>
                               </p>
                           </form><!--form ends-->
@@ -204,17 +232,17 @@ include("functions/functions.php");
                               <div class="row row-eq-height" id="thumbs"><!--row starts-->
                                 <div class="col-4"><!--col xs 4 starts-->
                                   <a href="#" class="thumb">
-                                    <img src="admin_area/product_images/black-kurta-white-salwar.jpg" class="img-fluid"/>
+                                    <img src="admin_area/product_images/<?php echo $product_image?>" width="100" height="150"/>
                                   </a>
                                 </div><!--col xs 4 ends-->
                                 <div class="col-4"><!--col xs 4 starts-->
                                   <a href="#" class="thumb">
-                                    <img src="admin_area/product_images/kurta-shalwar-navy-blue.jpg" class="img-fluid"/>
+                                    <img src="admin_area/product_images/<?php echo $product_image2?>" width="100" height="150"/>
                                   </a>
                                 </div><!--col xs 4 ends-->
                                 <div class="col-4"><!--col xs 4 starts-->
                                   <a href="#" class="thumb">
-                                    <img src="admin_area/product_images/unstiched_fabric 1.jpg" class="img-fluid" />
+                                    <img src="admin_area/product_images/<?php echo $product_image?>" width="100" height="150" />
                                   </a>
                                 </div><!--col xs 4 ends-->
                               </div><!--row ends-->   
@@ -226,10 +254,7 @@ include("functions/functions.php");
                         <p><!--p starts-->
                           <h4>Product details</h4>
                           <p>
-                              Strewed assisted a since winningly crooked neglectful since and by pouting following wherever cumulative despite gosh alas ponderous and mannishly rabbit and frivolous kookaburra and where much placed that and hence met stuck.
-
-                              Expectantly cardinal a demonstrably enthusiastic smugly past lustily hence rat watchful that dwelled so tardily much well
-                          
+                              <?php echo $product_desc;?>
                           </p>
                           <h4>Size</h4>
                           <ul>
