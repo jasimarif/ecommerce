@@ -1,100 +1,192 @@
- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 
-body
-{
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-    
-}
+    body
+    {
+        font-family: 'Poppins', sans-serif;
+        background: #fafafa;
 
-p
-{
-    font-family: 'Poppins', sans-serif;
-    font-size:1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: white;
-}
+    }
 
-a, 
-a:hover,
-a:focus
-{
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
-}
+    p
+    {
+        font-family: 'Poppins', sans-serif;
+        font-size:1.1em;
+        font-weight: 300;
+        line-height: 1.7em;
+        color: black;
+    }
 
-.navbar
-{
-    padding: 2px;
-  position: relative;
-    left: -15px;
-    border: none;
-    border-radius: 0px;
-    margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-    
-}
+    a, 
+    a:hover,
+    a:focus
+    {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
 
-.navbar btn
-{
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-        
-}
+    .navbar
+    {
+        padding: 10px 10px;
+        border: none;
+        border-radius: 0px;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+
+    }
+
+    .navbar btn
+    {
+        box-shadow: none;
+        outline: none !important;
+        border: none;
+
+    }
+
+    .navbar-brand
+    {
+        position: relative;
+        right: -10px;
+    }
+
+    .nav-link
+    {
+        font-weight: bold;
+        color: black;
+        font-family: 'Poppins' sans-serif;
+
+    }
+
+   
+    .wrapper
+    {
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: stretch;
+          min-height: 100vh;
+
+    }
+
+    #sidebar
+    {
+        min-width: 200px;
+        max-width: 200px;
+
+        background-color: black;
+        color: white;
+        transition: all 0.3s; 
+    }
 
 
-.line
-{
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0px;
-}
 
-.wrapper
-{
-    display: flex;
-    width: 100%;
-    
-    align-items: stretch;
-}
+    #sidebar.active
+    {
+        margin-left: -200px;
+    }
 
-#sidebar
-{
-    min-width: 200px;
-    max-width: 200px;
-   height:620px;
-    background-color: black;
-    color: white;
-    transition: all 0.3s; 
-}
+    #sidebar .sidebar-header
+    {
+        padding: 10px;
+
+    }
 
 
 
-#sidebar.active
-{
-    margin-left: -250px;
-}
+    #sidebar ul li a {
+        padding: 10px;
+        font-size: 1.1em;
+        display: block;
+    }
 
-#sidebar .sidebarheader
-{
-    padding: 20px;
-    background: #6d7fcc;
-}
+    #sidebar ul li a:hover {
+        color: #7386D5;
+        background: #fff;
+    }
 
-.navbar-brand
+    a[data-toggle="collapse"] {
+        position: relative;
+    }
+    #sidebar .dropdown-toggle::after {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+
+    }
+
+    @media (max-width: 768px) {
+        #sidebar {
+            margin-left: -200px;
+        }
+        #sidebar.active {
+            margin-left: 0;
+        }
+        #sidebarCollapse span {
+            display: none;
+        }
+    }
+
+
+    #product_box
+    {
+
+        text-align: center;
+
+
+    }
+
+    #single_product
+    {
+        float: left;
+        padding-bottom : 30px;
+        padding-left: 60px;
+
+
+    }
+    #single_product img
+    {
+        border: 2px solid black;
+
+    }
+
+    #products
+    {
+        margin: 10px 0px 20px 0px;
+        text-decoration: underline;
+    }
+
+    #contents {
+        width: 100%;
+
+          min-height: 100vh;
+        transition: all 0.3s;
+
+    }
+
+    #shopping_cart
+    {
+        width: 100%;
+
+        background: black;
+        color: white;
+        float: right;
+    }
+    #sidebarCollapse
+    {
+        display: none;
+    }
+
+    @media only screen and  (max-width: 768px) {
+      #sidebarCollapse {
+        display:block;
+      }
+    }
+
+#pagination
 {
     position: relative;
-    right: -10px;
+    top: 10px;
+    left: 10px;
 }
-
-
-
-
-
-
-
 

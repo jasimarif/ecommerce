@@ -1,4 +1,12 @@
 <!doctype html>
+<?php
+include("functions/functions.php");  
+
+
+
+?>
+
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -13,7 +21,8 @@
       <!--font awsome-->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
       
-  
+          <!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
   
        <link rel="stylesheet" type="text/css" href="style.css" media="all">
      <title>Tijarat</title>
@@ -21,38 +30,34 @@
     </head>
   <body>
     
-      
+    
         
     
     <div class="wrapper"> 
         
-        <nav id="sidebar" class="container-fluid"> 
+        <nav id="sidebar"> 
             <div class="sidebar-header"> 
                 <h3> Categories </h3>
             </div>
             <ul class="list-unstyled components">
                 
-                            
+                         
                 <li class="active"> 
-                <a href="#mens_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Men </a>
+                     
+                <a href="#mens_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">  Men </a>
                             
                     <ul class="collapse list-unstyled"  id="mens_menu">
-                        <li> <a href="#"> Top picks </a> </li>
-                        <li> <a href="#"> Kurta Shalwar</a> </li>
-                        <li> <a href="#"> Waistcoat</a> </li>
-                        <li> <a href="#"> Unstitched fabric</a> </li>
-                    
+                          <?php  getTypes(); ?>
+                        
+                       
                     </ul>
-                    </li>
+                     </li>
                 
                 <li> 
                 <a href="#womens_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Women </a>
                             
                     <ul class="collapse list-unstyled"  id="womens_menu">
-                        <li> <a href="#"> Top picks </a> </li>
-                        <li> <a href="#"> Kurta Shalwar</a> </li>
-                        <li> <a href="#"> Waistcoat</a> </li>
-                        <li> <a href="#"> Unstitched fabric</a> </li>
+                        <?php getwomen(); ?>
                     
                     </ul>
                     </li>
@@ -64,79 +69,95 @@
                 <a href="#"> New Arrival </a>
                 </li>
 
+                    
             </ul>
             
           
           </nav>
     
         <!--NAVBAR SETTINGS-->   
-      
-          <div class="contents container-fluid">
+      <div id="contents">
+          
           <nav class="navbar navbar-expand-xl navbar-light" style="background-color: white;">
               
-              
+             <div class="container-fluid"> 
                   
     <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm"> 
-        <i class="fas fa-align-justify">  </i>
+        <i class="fas fa-align-justify">  </i> 
 
     </button>
         
-        <a class="navbar-brand" href="#">TiJARAT</a>
+        <a class="navbar-brand" href="index.php">TiJARAT</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon-md"></span>
   </button>
 
   <div class="collapse navbar-collapse " id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+         <a class="nav-link" href="index.php"> <i class="fas fa-home"></i> Home </a>
+      </li>
+         <li class="nav-item">
+        <a class="nav-link" href="all_products.php"> All Products </a>
       </li>
         
         <li class="nav-item  ">
-        <a class="nav-link" href="#">My Account <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#"> <i class="fas fa-user"></i> My Account <span class="sr-only">(current)</span></a>
+      </li>
+     
+      <li class="nav-item ">
+        <a class="nav-link" href="cart.php"> <i class="fas fa-shopping-cart"></i>Shopping Cart <span class="sr-only">(current)</span></a>
       </li>
         
-     
-      <li class="nav-item  dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categories
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-          
-      
-      <li class="nav-item ">
-        <a class="nav-link" href="#">Shopping Cart <span class="sr-only">(current)</span></a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">About Us<span class="sr-only">(current)</span></a>
-      </li>
         
     </ul>
      
     <form method="get" action="results.php"  enctype="multipart/form-data" class="form-inline form-group my-2 my-lg-0">
         
       <input class="form-control mr-sm-2" name="user_query" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn my-2 my-sm-0" type="submit" id="submit">
-     <i class="fas fa-search"></i>
+          <button class="btn my-2 my-sm-0" name="search" type="submit" id="submit">
+         <i class="fas fa-search"></i>
 
     </button>
     </form>
          
       
   <form class="form-inline">
-    <button class="btn btn-sm mx-4 btn-outline-success" type="button">Sign Up</button>
-    <button class="btn btn-sm btn-outline-primary" type="button">Sign In</button>
+    <a href="customer_register.php"> <button class="btn btn-sm mx-4 btn-outline-success" type="button">Sign Up</button></a>
+      <a href="customer_login.php"> <button class="btn btn-sm btn-outline-primary" type="button">Sign In</button> </a>
   </form>
 
   </div>
-                       
+   </div>                       
 </nav>  
-          </div>   
+         <div id="shopping_cart"> 
+         <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
+        
+        Welcome guest! <b style="color:yellow"> Shopping cart Total Items: <?php totalItems(); ?> - Total Price:<?php totalPrice();?> </b> <a href="cart.php" style="color: blue" > Go to cart</a>
+        
+        
+        </span>
+
+
+         </div> 
+
+
+
+        <div id="product_box"> 
+        
+            <h3 id="products"> Products </h3>
+            
+             <?php getPro(); 
+            
+                getMenPro();
+                getWomenPro();
+                cart();
+            
+            ?> 
+        
+        </div> 
+      </div>      
+        
 </div>
         
     
@@ -157,8 +178,9 @@
             }); 
           
       });
-      
-      
+          
+          
+    
       
       </script>
       

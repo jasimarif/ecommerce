@@ -1,0 +1,13 @@
+<?php
+                           $ip= getIp();
+            if(isset($_POST['update_cart']))
+            {
+               foreach ($_POST['qty'] as $qty)
+               {
+                $qty= $_POST['qty'];
+                $update_qty= "UPDATE cart SET qty='$qty' WHERE p_id='$pro_id'";
+                $run_qty=mysqli_query($con, $update_qty);
+                $_SESSION['qty']=$qty;
+                $total= $total * $qty;
+            }
+            }
