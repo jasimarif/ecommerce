@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2019 at 10:46 AM
+-- Generation Time: Jun 08, 2019 at 09:41 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -39,15 +39,12 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`p_id`, `ip_add`, `qty`) VALUES
-(2, '::1', 0),
 (3, '::1', 0),
 (4, '::1', 0),
 (5, '::1', 0),
 (7, '::1', 0),
-(9, '::1', 0),
-(10, '::1', 0),
-(11, '::1', 0),
-(13, '::1', 0);
+(8, '::1', 0),
+(2, '::1', 0);
 
 -- --------------------------------------------------------
 
@@ -69,32 +66,6 @@ INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES
 (2, 'Women'),
 (5, 'Kids'),
 (6, 'New Arrival');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customers`
---
-
-CREATE TABLE `customers` (
-  `customer_id` int(100) NOT NULL,
-  `customer_ip` varchar(255) NOT NULL,
-  `customer_name` text NOT NULL,
-  `customer_email` varchar(100) NOT NULL,
-  `customer_pass` varchar(100) NOT NULL,
-  `customer_country` text NOT NULL,
-  `customer_city` text NOT NULL,
-  `customer_contact` varchar(255) NOT NULL,
-  `customer_address` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`customer_id`, `customer_ip`, `customer_name`, `customer_email`, `customer_pass`, `customer_country`, `customer_city`, `customer_contact`, `customer_address`) VALUES
-(1, '::1', 'jasim ali', 'jasimarifali@gmail.com', '54646', 'Pakistan', 'karachi', '3472540245', 'r121/1 sector 14a north nazimabad, same'),
-(7, '::1', 'jasim ali', 'jasimrifali@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', 'Pakistan', 'karachi', '3472540245', 'r121/1 sector 14a north nazimabad, same');
 
 -- --------------------------------------------------------
 
@@ -131,8 +102,6 @@ CREATE TABLE `products` (
   `product_price` int(100) NOT NULL,
   `product_desc` text NOT NULL,
   `product_image` text NOT NULL,
-  `product_image_2` varchar(32) DEFAULT NULL,
-  `product_image_3` varchar(32) DEFAULT NULL,
   `product_keywords` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -140,25 +109,23 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `product_cat`, `product_type`, `product_title`, `product_price`, `product_desc`, `product_image`, `product_image_2`, `product_image_3`, `product_keywords`) VALUES
-(2, 1, 'Unstiched', 'Unstitched fabric light blue', 1700, 'Unstitched fabric light blue  ', 'unstiched_fabric2.jpg', NULL, NULL, 'unstitched, blue'),
-(3, 1, 'Unstiched', 'Unstitched fabric gray', 2000, 'Unstitched fabric gray   ', 'unstiched_fabric 1.jpg', NULL, NULL, 'unstitched gray'),
-(4, 1, 'Unstiched', 'Unstitched fabric  brown', 2000, 'Unstitched fabric  brown  ', 'unstiched_fabric3.jpg', NULL, NULL, 'unstitched brown'),
-(5, 1, 'Unstiched', 'Unstitched fabric black', 1200, 'Unstitched fabric black   ', 'unstiched_fabric4.jpg', NULL, NULL, 'unstitched black'),
-(6, 1, 'kurta shalwar', 'Kurta shalwar black', 2500, 'Kurta shalwar black   ', 'black-kurta-white-salwar.jpg', NULL, NULL, 'kurta shalwar black'),
-(7, 2, 'Kurta Shalwar', 'black', 3000, ' black  ', 'women_stitched_black.jpg', NULL, NULL, 'black women'),
-(8, 1, 'kurta shalwar', 'Kurta shalwar white', 2500, 'Kurta shalwar white   ', 'kurta-shalwar-white.jpg', NULL, NULL, 'kurta shalwar white'),
-(9, 1, 'kurta shalwar', 'Kurta shalwar navy blue', 2700, 'Kurta shalwar navy blue   ', 'kurta-shalwar-navy-blue.jpg', NULL, NULL, 'Kurta shalwar navy blue'),
-(10, 1, 'Waistcoat', 'Waist coat black', 3000, 'Waist coat black   ', 'waitcoat-black.jpg', NULL, NULL, 'Waist coat black'),
-(11, 1, 'Waistcoat', 'Waist coat maroon', 3500, 'Waist coat maroon   ', 'waitcoat-maroon.jpg', NULL, NULL, 'Waist coat maroon'),
-(12, 2, 'Top Picks', 'Cotton White', 3700, 'Cotton White ', 'women_stitched_white.jpg', NULL, NULL, 'Cotton White'),
-(13, 2, 'Top Picks', 'Red sleeveless', 4000, 'Red sleeveless   ', 'women_stitched_sleeveless.jpg', NULL, NULL, 'Red sleeveless'),
-(14, 2, 'Kurta Shalwar', 'Cotton Brown', 3500, 'Brown kurta shalwar women  ', 'women_stitched.jpg', NULL, NULL, 'Brown Cotton'),
-(15, 6, '', 'Cotton Red', 5000, 'Cotton Red  ', 'women_unstitched.jpg', NULL, NULL, 'new'),
-(16, 2, 'Misc', 'Cotton Red', 5000, 'Cotton Red  ', 'women_unstitched.jpg', NULL, NULL, 'Miscellaneous '),
-(17, 2, 'Top Picks', 'white', 4500, 'white dress', 'women_stitched_white.jpg', NULL, NULL, 'white dress'),
-(18, 1, 'kurta shalwar', 'kurta multiple', 1200, 'random test data', 'signup.jpg', 'signup2.jpg', 'signup3.jpg', 'random data'),
-(19, 1, 'kurta shalwar', 'random data', 2000, '   random', 'unstiched_fabric3.jpg', 'waitcoat-maroon.jpg', 'women_stitched_white.jpg', 'random data');
+INSERT INTO `products` (`product_id`, `product_cat`, `product_type`, `product_title`, `product_price`, `product_desc`, `product_image`, `product_keywords`) VALUES
+(2, 1, 'Unstiched', 'Unstitched fabric light blue', 1700, 'Unstitched fabric light blue  ', 'unstiched_fabric2.jpg', 'unstitched, blue'),
+(3, 1, 'Unstiched', 'Unstitched fabric gray', 2000, 'Unstitched fabric gray   ', 'unstiched_fabric 1.jpg', 'unstitched gray'),
+(4, 1, 'Unstiched', 'Unstitched fabric  brown', 2000, 'Unstitched fabric  brown  ', 'unstiched_fabric3.jpg', 'unstitched brown'),
+(5, 1, 'Unstiched', 'Unstitched fabric black', 1200, 'Unstitched fabric black   ', 'unstiched_fabric4.jpg', 'unstitched black'),
+(6, 1, 'kurta shalwar', 'Kurta shalwar black', 2500, 'Kurta shalwar black   ', 'black-kurta-white-salwar.jpg', 'kurta shalwar black'),
+(7, 2, 'Kurta Shalwar', 'black', 3000, ' black  ', 'women_stitched_black.jpg', 'black women'),
+(8, 1, 'kurta shalwar', 'Kurta shalwar white', 2500, 'Kurta shalwar white   ', 'kurta-shalwar-white.jpg', 'kurta shalwar white'),
+(9, 1, 'kurta shalwar', 'Kurta shalwar navy blue', 2700, 'Kurta shalwar navy blue   ', 'kurta-shalwar-navy-blue.jpg', 'Kurta shalwar navy blue'),
+(10, 1, 'Waistcoat', 'Waist coat black', 3000, 'Waist coat black   ', 'waitcoat-black.jpg', 'Waist coat black'),
+(11, 1, 'Waistcoat', 'Waist coat maroon', 3500, 'Waist coat maroon   ', 'waitcoat-maroon.jpg', 'Waist coat maroon'),
+(12, 2, 'Top Picks', 'Cotton White', 3700, 'Cotton White ', 'women_stitched_white.jpg', 'Cotton White'),
+(13, 2, 'Top Picks', 'Red sleeveless', 4000, 'Red sleeveless   ', 'women_stitched_sleeveless.jpg', 'Red sleeveless'),
+(14, 2, 'Kurta Shalwar', 'Cotton Brown', 3500, 'Brown kurta shalwar women  ', 'women_stitched.jpg', 'Brown Cotton'),
+(15, 6, '', 'Cotton Red', 5000, 'Cotton Red  ', 'women_unstitched.jpg', 'new'),
+(16, 2, 'Misc', 'Cotton Red', 5000, 'Cotton Red  ', 'women_unstitched.jpg', 'Miscellaneous '),
+(17, 2, 'Top Picks', 'white', 4500, 'white dress', 'women_stitched_white.jpg', 'white dress');
 
 -- --------------------------------------------------------
 
@@ -207,22 +174,10 @@ INSERT INTO `women` (`id`, `type`) VALUES
 --
 
 --
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`p_id`);
-
---
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`cat_id`);
-
---
--- Indexes for table `customers`
---
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`customer_id`);
 
 --
 -- Indexes for table `men`
@@ -259,12 +214,6 @@ ALTER TABLE `categories`
   MODIFY `cat_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `customers`
---
-ALTER TABLE `customers`
-  MODIFY `customer_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT for table `men`
 --
 ALTER TABLE `men`
@@ -274,7 +223,7 @@ ALTER TABLE `men`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `women`

@@ -36,39 +36,25 @@ session_start();
         
         <nav id="sidebar"> 
             <div class="sidebar-header"> 
-                <h3> Categories </h3>
+                <h3> My Account </h3>
             </div>
             <ul class="list-unstyled components">
                 
                          
                 <li class="active"> 
                      
-                <a href="#mens_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">  Men </a>
                             
-                    <ul class="collapse list-unstyled"  id="mens_menu">
-                          <?php  getTypes(); ?>
+                    <ul class="list-unstyled"  id="mens_menu">
                         
+                        <li> <a href="my_accounts.php?my_orders"> Orders</a> </li>
+                        <li> <a href="my_accounts.php?edit_account"> Edit Account</a> </li>
+                        <li> <a href="my_accounts.php?change_pass"> Change password</a> </li>
+                        <li> <a href="my_accounts.php?delete_account"> Delete Account</a> </li>
                        
                     </ul>
                      </li>
                 
-                <li> 
-                <a href="#womens_menu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Women </a>
                             
-                    <ul class="collapse list-unstyled"  id="womens_menu">
-                        <?php getwomen(); ?>
-                    
-                    </ul>
-                    </li>
-                
-                <li> 
-                <a href="#"> Kids </a>
-                </li>
-                <li> 
-                <a href="#"> New Arrival </a>
-                </li>
-
-                    
             </ul>
             
           
@@ -100,16 +86,9 @@ session_start();
         <a class="nav-link" href="all_products.php"> All Products </a>
       </li>
         
-        
-        <?php
-        if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email'])))
-                {
-         echo "<li class='nav-item'>";
-            
-            echo "<a class='nav-link' href='my_accounts.php'> <i class='fas fa-user'></i> My Account </a>";
-                
-      echo "</li>";}
-          ?>
+        <li class="nav-item  ">
+        <a class="nav-link" href="#"> <i class="fas fa-user"></i> My Account <span class="sr-only">(current)</span></a>
+      </li>
      
       <li class="nav-item ">
         <a class="nav-link" href="cart.php"> <i class="fas fa-shopping-cart"></i>Shopping Cart <span class="sr-only">(current)</span></a>
@@ -131,11 +110,9 @@ session_start();
   <form class="form-inline">
     <?php
       if(!isset($_SESSION['customer_email']))
-          if(!isset($_SESSION['email']))
-          
       {   
         echo "<button class='btn btn-sm mx-4 btn-outline-success' type='button'>Sign Up</button>";
-        echo " <a href='customer_login.php'> <button class='btn btn-sm btn-outline-primary' type='button'>Sign In</button></a>";
+        echo "<button class='btn btn-sm btn-outline-primary' type='button'>Sign In</button>";
       }
       else
       {
@@ -150,9 +127,9 @@ session_start();
          <div id="shopping_cart"> 
          <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
             <?php
-             if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email'])))
+             if(isset($_SESSION['customer_email']))
              {
-                 echo "<b> Welcome </b>". $_SESSION['email'] . "<b> Your</b>" ;
+                 echo "<b> Welcome </b>". $_SESSION['customer_email'] . "<b> Your</b>" ;
              }
              else
              {
@@ -161,12 +138,11 @@ session_start();
              
              ?>
             
-             <b style="color:yellow"> Shopping cart Total Items: <?php 
-                 if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email'])))
+             <b style="color:yellow"> Shopping cart Total Items: <?php if(isset($_SESSION['customer_email']))
                                                                                         
                                                                                     totalItems();
              
-             ?> - Total Price:<?php if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email']))){totalPrice();}?> </b> <a href="cart.php" style="color: blue" > Go to cart</a>
+             ?> - Total Price:<?php if(isset($_SESSION['customer_email'])){totalPrice();}?> </b> <a href="cart.php" style="color: blue" > Go to cart</a>
        
         
         </span>
@@ -178,54 +154,25 @@ session_start();
 
         <div id="product_box"> 
         
-            <h3 id="products"> Products </h3>
+            <h1> Welcome </h1>
+            <?php
+            if(isset($_GET['edit_account']))
+            {
+                include("edit_account.php");
+            }
+             if(isset($_GET['change_pass']))
+            {
+                include("change_pass.php");
+            }
             
-             <?php 
-               $get_pro= "SELECT * FROM products";
-    $run_pro= mysqli_query($con, $get_pro);
-    while($row_pro=mysqli_fetch_array($run_pro))
-    {
-        $pro_id=$row_pro['product_id'];
-        $pro_cat=$row_pro['product_cat'];
-        $pro_type=$row_pro['product_type'];
-        $pro_title=$row_pro['product_title'];
-        $pro_price=$row_pro['product_price'];
-        $pro_image=$row_pro['product_image'];
-
-        echo "
+            ?>
            
-            
-            <div id=single_product> 
-            <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
-            <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
-            <p> PKR $pro_price </p>
-            <a href='all_products.php?add_cart=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
-                
-            </div>
         
-        ";
-    }
-           all_pro_cart();
-        
-            ?> 
-        
-<!--
-  
-</div> 
-          <div id="pagination">
-          <ul class="pagination">
-  <li class="page-item"><a class="page-link" href="#products">Previous</a></li>
-  <li class="page-item"><a class="page-link" href="#">1</a></li>
-  <li class="page-item"><a class="page-link" href="#">2</a></li>
-  <li class="page-item"><a class="page-link" href="#">3</a></li>
-  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-</ul>
-              </div>
+        </div> 
       </div>      
         
 </div>
-                  
--->
+        
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

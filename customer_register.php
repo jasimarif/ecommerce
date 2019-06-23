@@ -1,5 +1,6 @@
 <!doctype html>
 <?php
+session_start();
 include("functions/functions.php");  
 
 
@@ -223,14 +224,39 @@ if (isset($_POST['register']))
     $c_contact=$_POST['c_contact'];
     $c_address=$_POST['c_address'];
     
-     $insert_c="INSERT INTO `customers` (customer_ip,customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address) values ('$ip','$c_name','$c_email','$c_pass','$c_country','$c_city','$c_contact','$c_address')";
+     $insert_c="INSERT INTO `customers` (customer_ip,customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address) values ('$ip','$c_name','$c_email',SHA('$c_pass'),'$c_country','$c_city','$c_contact','$c_address')";
     
+   
+    $check_user="SELECT * FROM customers WHERE customer_email='$c_email'";
+    $run_check=mysqli_query($con,$check_user);
+    if(mysqli_num_rows($run_check)>0)
+    {
+        echo "<script>alert('Useremail already exists')</script>";
+    }
+else
+{
     $run_c=mysqli_query($con, $insert_c);
     if($run_c)
     {
-        echo "<script> alert('Account added successfully')</script>";
+        $sel_cart="SELECT * FROM cart where ip_add='$ip'";
+        $run_cart=mysqli_query($con,$sel_cart);
+        $check_cart= mysqli_num_rows($run_cart);
+        if($check_cart==0)
+        {
+            $_SESSION['customer_email']=$c_email;
+            echo "<script>alert('Account created succesfully! Now login with your account') </script>";
+            echo"<script>window.open('customer_login.php','_self')</script>";
+        }
+        else
+        {
+            $_SESSION['customer_email']=$c_email;
+            echo "<script>alert('Account created succesfully!') </script>";
+            echo"<script>window.open('checkout.php','_self')</script>";
+        }
+    }
     }
    
+    
     
     
 }

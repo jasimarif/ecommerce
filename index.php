@@ -1,8 +1,7 @@
 <!doctype html>
 <?php
 include("functions/functions.php");  
-
-
+session_start();
 
 ?>
 
@@ -101,9 +100,16 @@ include("functions/functions.php");
         <a class="nav-link" href="all_products.php"> All Products </a>
       </li>
         
-        <li class="nav-item  ">
-        <a class="nav-link" href="#"> <i class="fas fa-user"></i> My Account <span class="sr-only">(current)</span></a>
-      </li>
+        
+        <?php
+        if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email'])))
+                {
+         echo "<li class='nav-item'>";
+            
+            echo "<a class='nav-link' href='my_accounts.php'> <i class='fas fa-user'></i> My Account </a>";
+                
+      echo "</li>";}
+          ?>
      
       <li class="nav-item ">
         <a class="nav-link" href="cart.php"> <i class="fas fa-shopping-cart"></i>Shopping Cart <span class="sr-only">(current)</span></a>
@@ -123,8 +129,19 @@ include("functions/functions.php");
          
       
   <form class="form-inline">
-    <a href="customer_register.php"> <button class="btn btn-sm mx-4 btn-outline-success" type="button">Sign Up</button></a>
-      <a href="customer_login.php"> <button class="btn btn-sm btn-outline-primary" type="button">Sign In</button> </a>
+    <?php
+      if(!isset($_SESSION['customer_email']))
+          if(!isset($_SESSION['email']))
+          
+      {   
+        echo "<a href='customer_register.php'>  <button class='btn btn-sm mx-4 btn-outline-success' type='button'>Sign Up</button> </a>";
+        echo " <a href='customer_login.php'> <button class='btn btn-sm btn-outline-primary' type='button'>Sign In</button></a>";
+      }
+      else
+      {
+          echo "<a href='logout.php'> <button class='btn btn-sm btn-danger' type='button'>Logout</button></a>"; 
+      }
+        ?>
   </form>
 
   </div>
@@ -132,9 +149,25 @@ include("functions/functions.php");
 </nav>  
          <div id="shopping_cart"> 
          <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
-        
-        Welcome guest! <b style="color:yellow"> Shopping cart Total Items: <?php totalItems(); ?> - Total Price:<?php totalPrice();?> </b> <a href="cart.php" style="color: blue" > Go to cart</a>
-        
+            <?php
+             if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email'])))
+             {
+                 echo "<b> Welcome </b>". $_SESSION['email'] . "<b> Your</b>" ;
+             }
+             else
+             {
+                   echo "<b> Welcome Guest </b>";
+             }
+             
+             ?>
+            
+             <b style="color:yellow"> Shopping cart Total Items: <?php 
+                 if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email'])))
+                                                                                        
+                                                                                    totalItems();
+             
+             ?> - Total Price:<?php if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email']))){totalPrice();}?> </b> <a href="cart.php" style="color: blue" > Go to cart</a>
+       
         
         </span>
 
@@ -152,6 +185,7 @@ include("functions/functions.php");
                 getMenPro();
                 getWomenPro();
                 cart();
+                  
             
             ?> 
         

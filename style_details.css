@@ -186,19 +186,18 @@
 table
 {
    background-color: white; 
-   width: 780px;
-   margin-top: 20px;
-   margin-left: 100px;
     
-    
+    position: relative;
+    left: 20%;
 }
-.box{
-    background: #fff;
-    margin: 0 0 30px;
-    border: solid 1px #e6e6e6;
-    box-sizing: border-box;
+
+th
+{
+    text-align: center;
     padding: 20px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-
 }
 
+td
+{
+    padding: 20px;
+}

@@ -1,10 +1,7 @@
 <!doctype html>
 <?php
-
-session_start();
 include("functions/functions.php");  
-
-
+session_start();
 
 ?>
 
@@ -103,9 +100,16 @@ include("functions/functions.php");
         <a class="nav-link" href="all_products.php"> All Products </a>
       </li>
         
-        <li class="nav-item  ">
-        <a class="nav-link" href="#"> <i class="fas fa-user"></i> My Account <span class="sr-only">(current)</span></a>
-      </li>
+        
+        <?php
+        if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email'])))
+                {
+         echo "<li class='nav-item'>";
+            
+            echo "<a class='nav-link' href='my_accounts.php'> <i class='fas fa-user'></i> My Account </a>";
+                
+      echo "</li>";}
+          ?>
      
       <li class="nav-item ">
         <a class="nav-link" href="cart.php"> <i class="fas fa-shopping-cart"></i>Shopping Cart <span class="sr-only">(current)</span></a>
@@ -125,8 +129,19 @@ include("functions/functions.php");
          
       
   <form class="form-inline">
-    <button class="btn btn-sm mx-4 btn-outline-success" type="button">Sign Up</button>
-   <a href="customer_login.php"><button class="btn btn-sm btn-outline-primary" type="button">Sign In</button></a> 
+    <?php
+      if(!isset($_SESSION['customer_email']))
+          if(!isset($_SESSION['email']))
+          
+      {   
+        echo "<button class='btn btn-sm mx-4 btn-outline-success' type='button'>Sign Up</button>";
+        echo " <a href='customer_login.php'> <button class='btn btn-sm btn-outline-primary' type='button'>Sign In</button></a>";
+      }
+      else
+      {
+          echo "<a href='logout.php'> <button class='btn btn-sm btn-danger' type='button'>Logout</button></a>"; 
+      }
+        ?>
   </form>
 
   </div>
@@ -134,14 +149,31 @@ include("functions/functions.php");
 </nav>  
          <div id="shopping_cart"> 
          <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
-        
-        Welcome guest! <b style="color:yellow"> Shopping cart Total Items: <?php totalItems(); ?> - Total Price:<?php totalPrice();?> </b> <a href="cart.php" style="color: blue" > Go to cart</a>
-        
+            <?php
+             if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email'])))
+             {
+                 echo "<b> Welcome </b>". $_SESSION['email'] . "<b> Your</b>" ;
+             }
+             else
+             {
+                   echo "<b> Welcome Guest </b>";
+             }
+             
+             ?>
+            
+             <b style="color:yellow"> Shopping cart Total Items: <?php 
+                 if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email'])))
+                                                                                        
+                                                                                    totalItems();
+             
+             ?> - Total Price:<?php if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email']))){totalPrice();}?> </b> <a href="cart.php" style="color: blue" > Go to cart</a>
+       
         
         </span>
 
 
          </div> 
+
 
 
 
@@ -214,33 +246,9 @@ include("functions/functions.php");
         </form>
         
             
-            <?php 
-            
-                $ip=getIp();
-              
-                if (isset ($_POST['update_cart']))
-                {
-                    foreach ($_POST['remove'] as $remove_id)
-                    {
-                        $delete_product= "DELETE FROM cart WHERE p_id='$remove_id' AND ip_add='$ip'"; 
-                        $run_delete=mysqli_query($con,$delete_product);    
-                    
-                        if($run_delete)
-                        {
-                            echo "<script>window.open('cart.php','_self') </script>";
-                        }
-                    }
-                    
-                }
-                    if(isset($_POST['continue']))
-                    {
-                        echo "<script>window.open('index.php','_self')</script>";
-                    }
-          
-            
-            
-            
-            ?>
+
+
+
            
         </div> 
       </div>      

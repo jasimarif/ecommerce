@@ -29,14 +29,15 @@ function cart()
         $run_check= mysqli_query($con, $check_pro);
         if(mysqli_num_rows($run_check)>0)
         {
-            echo "Already added";
+            echo "<script>alert('Already added')</script>";
         }
         else
         {
             $insert_pro= "INSERT INTO `cart` (p_id,ip_add) values ('$pro_id','$ip')";
             $run_pro= mysqli_query($con,$insert_pro);
-            echo "Product added to cart";
+            echo "<script>alert('Product added')</script>";
             echo "<script> window.open('index.php','_self') </script>";
+            
         }
     }
 }
@@ -53,13 +54,13 @@ function all_pro_cart()
         $run_check= mysqli_query($con, $check_pro);
         if(mysqli_num_rows($run_check)>0)
         {
-            echo "Already added";
+            echo "<script>alert('Already added')</script>";
         }
         else
         {
             $insert_pro= "INSERT INTO `cart` (p_id,ip_add) values ('$pro_id','$ip')";
             $run_pro= mysqli_query($con,$insert_pro);
-            echo "Product added to cart";
+            echo "<script>alert('Product added')</script>";
             echo "<script> window.open('all_products.php','_self') </script>";
         }
     }

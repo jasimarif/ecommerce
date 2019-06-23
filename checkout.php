@@ -124,8 +124,20 @@ include("functions/functions.php");
          
       
   <form class="form-inline">
-    <button class="btn btn-sm mx-4 btn-outline-success" type="button">Sign Up</button>
-    <button class="btn btn-sm btn-outline-primary" type="button">Sign In</button>
+      <?php
+      if(!isset($_SESSION['customer_email']))
+      {   
+        echo "<button class='btn btn-sm mx-4 btn-outline-success' type='button'>Sign Up</button>";
+        echo "<button class='btn btn-sm btn-outline-primary' type='button'>Sign In</button>";
+      }
+      else
+      {
+          echo "<a href='logout.php'> <button class='btn btn-sm btn-danger' type='button'>Logout</button></a>"; 
+      }
+        
+        
+        
+        ?>
   </form>
 
   </div>
@@ -134,7 +146,24 @@ include("functions/functions.php");
          <div id="shopping_cart"> 
          <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
         
-        Welcome guest! <b style="color:yellow"> Shopping cart Total Items: <?php totalItems(); ?> - Total Price:<?php totalPrice();?> </b> <a href="cart.php" style="color: blue" > Go to cart</a>
+     <?php
+             if(isset($_SESSION['customer_email']))
+             {
+                 echo "<b> Welcome </b>". $_SESSION['customer_email'] . "<b> Your</b>" ;
+             }
+             else
+             {
+                   echo "<b> Welcome Guest </b>";
+             }
+             
+             ?>
+            
+             <b style="color:yellow"> Shopping cart Total Items: <?php if(isset($_SESSION['customer_email']))
+                                                                                        
+                                                                                    totalItems();
+             
+             ?> - Total Price:<?php if(isset($_SESSION['customer_email'])){totalPrice();}?> </b> <a href="cart.php" style="color: blue" > Go to cart</a>
+        
         
         
         </span>
