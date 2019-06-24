@@ -127,209 +127,74 @@ include("functions/functions.php");
  </div>                     
 </nav>  
 
-
-
-
         <div id="shopping_cart" > 
-          <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >  
-           Welcome guest! <b style="color:yellow"> Shopping cart Total Items - Total Price: </b> <a href="cart.php" style="color: blue" > Go to cart</a>
-          </span>
-        </div>
-        <?php
-          $product_title = "";
-          $product_desc = "";
-          $product_image = "";
-          $product_image2 = "";
-          $product_image3 = "";
-          $product_price = "";
+<div class="container-flex" style="padding:15px; margin-top:-15px">
+  <!--Welcome Bar-->
+  <div class="row">
+    <?php include("includes/WelcomeBar.php"); ?>
+  </div>
+  <!--Product details Area-->
+<div id="MainContent">
+    <div class="container-flex">
+      <div class="row "><!--First row with main image box and thumbs-->
+        <div class="col-sm-1 ml-1 "><!--sidethumbs start-->
+           <div class="row no-gutters">
+              <img src="images/signup.jpg" class="img-fluid" alt="Responsive ismage"/>
+           </div>
+        </div><!--sidethumbs ends-->
+        <div class="col-sm-5"><!--Main Image starts-->
+            <img src="images/signup.jpg" class="img-fluid" alt="Responsive ismage"/>
+        </div><!--Main Image ends-->
+        <div class="col-sm-4" id="box"><!--Box Starts--> 
           
+          <h3 class="text-center">Title</h3>
           
+          <form method="POST" action="" ><!--buying box starts-->
+            
+            <div class="form-group row ">
+              <label  for="quantity" class="col-sm-2 col-form-label">Quantity</label>
+              <div class="col-sm-9 ">
+                <input type="text" id="quantity" name="qty" size="3" style="padding: 2px;"> ea
+              </div>
+            </div>
 
+            <div class="form-group row ">
+                <label  for="Sizes" class="col-sm-2 col-form-label">Sizes</label>
+                <div class="col-sm-10 ">
+                  <select id="Sizes" name="sizes" size="1" style="height: 30px; padding:1px;" >
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                  </select>
+                </div>
+            </div>
 
-          if(isset($_GET['pro_id'])){
-            $product_id=$_GET['pro_id'];
-            $details_query= "SELECT * FROM `products` WHERE `product_id`='$product_id'";
-            $run_details_query = mysqli_query($con,$details_query);
-            while($result=mysqli_fetch_array($run_details_query)){
-              $product_title = $result['product_title'];
-              $product_desc = $result['product_desc'];
-              $product_image = $result['product_image'];
-              $product_image2 = $result['product_image_2'];
-              $product_image3 = $result['product_image_3'];
-              $product_price = $result['product_price'];
-            }
+              <div class="form-group row ">
+                  <label  for="Price" class="col-sm-2 col-form-label">Price:</label>
+                  <div class="col-sm-9 " id="Price" style="line-height:35px">50 Rs.</div>
+              </div>
+              <div class="form-group row text-center">
+                <button class="btn btn-primary" style="margin: auto;">
+                    <a>
+                        <i class="fas fa-shopping-cart"></i>Add to cart
+                    </a>
+                </button>
+                  
+              </div>
 
-          }
-        
-        
-        ?>
-          
-        <div class="container" style="margin-top: 50px;"> <!--container starts-->
-            <div class="container"><!--CONTAINER STARTS-->
-              <div class="col-md-9"><!--COL MD 9 STARTS-->
-                  <div class="row" id="product_main"><!--ROW STARTS-->
-                      <div class="col-sm-6"><!--COL SM6 STARTS-->
-                          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"><!--carouselExampleControls STARTS-->
-                              <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                  <img class="d-block w-100" src="admin_area/product_images/<?php echo $product_image?>" alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                  <img class="d-block w-100" src="admin_area/product_images/<?php echo $product_image2?>" alt="Second slide">
-                                </div>
-                                <div class="carousel-item">
-                                  <img class="d-block w-100" src="admin_area/product_images/<?php echo $product_image3?>" alt="Third slide">
-                                </div>
-                              </div>
-                              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                              </a>
-                              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                              </a>
-                            </div><!--carouselExampleControls ENDS-->
-                      </div><!--COL SM6 ENDS-->
-                      <div class="col-sm-6"><!--COL SM6 STARTS-->
-                        <div class="box"><!--BOX STARTS-->
-                          <h1 class="text-center"><?php echo $product_title?></h1>
-                          <form action="details.php" method="POST" class="form-horizontal"><!--form starts-->
-                            <div class="form-group row">
-                              <label class="col-md-5 control-label">Product Quantity</label>
-                              <div class="col-md-7">
-                                <select name="product_qty" class="form-control">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-5 control-label">Product size</label>
-                                <div class="col-md-7">
-                                  <select name="product_qty" class="form-control">
-                                    <option>Select Size</option>
-                                    <option>small</option>
-                                    <option>medium</option>
-                                    <option>large</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <p class="price"><?php echo $product_price?> Rs.</p>
-                              <p class="text-center buttons">
-                                  <button class="btn btn-primary" type="submit">
-                                    <a href="#">
-                                    <i class="fas fa-shopping-cart"></i> Add to Cart
-                                    </a>
-                                      
-                                  </button>
-                              </p>
-                          </form><!--form ends-->
-                        </div><!--BOX ENDS-->
-                              <div class="row row-eq-height" id="thumbs"><!--row starts-->
-                                <div class="col-4"><!--col xs 4 starts-->
-                                  <a href="#" class="thumb">
-                                    <img src="admin_area/product_images/<?php echo $product_image?>" width="100" height="150"/>
-                                  </a>
-                                </div><!--col xs 4 ends-->
-                                <div class="col-4"><!--col xs 4 starts-->
-                                  <a href="#" class="thumb">
-                                    <img src="admin_area/product_images/<?php echo $product_image2?>" width="100" height="150"/>
-                                  </a>
-                                </div><!--col xs 4 ends-->
-                                <div class="col-4"><!--col xs 4 starts-->
-                                  <a href="#" class="thumb">
-                                    <img src="admin_area/product_images/<?php echo $product_image?>" width="100" height="150" />
-                                  </a>
-                                </div><!--col xs 4 ends-->
-                              </div><!--row ends-->   
-
-                      </div><!--COL SM6 ENDS-->
-                    </div><!--ROW ENDS-->
-
-                      <div class="box mt-5" id="details"><!--box starts-->
-                        <p><!--p starts-->
-                          <h4>Product details</h4>
-                          <p>
-                              <?php echo $product_desc;?>
-                          </p>
-                          <h4>Size</h4>
-                          <ul>
-                            <li>Small</li>
-                            <li>Medium</li>
-                            <li>Large</li>
-                          </ul>
-                        </p><!--p ends-->
-                        <hr>
-                          
-                      </div><!--box ends-->
-                      <div class="row row-eq-height"><!--row same height row starts-->
-                        <div class="col-md-3 col-sm-6"><!--col-md-3 col-sm-6 starts-->
-                          <div class="box same-height headline"><!--box same-height headline starts-->
-                            <h3 class="text-center">People also viewed these products</h3>
-                          </div><!--box same-height headline ends-->
-                        </div><!--col-md-3 col-sm-6 ends-->
-                        <div class="center-responsive col-md-3 col-sm-6"><!--center-responsive col-md-3 col-sm-6 starts-->
-                          <div class="product same-height"><!--product same-height starts-->
-                            <a href="details.php">
-                              <img src="admin_area/product_images/black-kurta-white-salwar.jpg" class="img-fluid">
-                            </a>
-                            <div class="text"> <!--text starts-->
-                              <h3><a href="details.php">kurta-shalwar-navy-blue</a></h3>
-                              <p class="price">50 Rs.</p>
-                            </div><!--text ends-->
-
-                            
-                          </div><!--product same-height ends-->
-                        </div><!--center-responsive col-md-3 col-sm-6 ends-->
-                        <div class="center-responsive col-md-3 col-sm-6"><!--center-responsive col-md-3 col-sm-6 starts-->
-                          <div class="product same-height"><!--product same-height starts-->
-                            <a href="details.php">
-                              <img src="admin_area/product_images/black-kurta-white-salwar.jpg" class="img-fluid">
-                            </a>
-                            <div class="text"> <!--text starts-->
-                              <h3><a href="details.php">kurta-shalwar-navy-blue</a></h3>
-                              <p class="price">50 Rs.</p>
-                            </div><!--text ends-->
-
-                            
-                          </div><!--product same-height ends-->
-                        </div><!--center-responsive col-md-3 col-sm-6 ends-->
-                        <div class="center-responsive col-md-3 col-sm-6"><!--center-responsive col-md-3 col-sm-6 starts-->
-                          <div class="product same-height"><!--product same-height starts-->
-                            <a href="details.php">
-                              <img src="admin_area/product_images/black-kurta-white-salwar.jpg" class="img-fluid">
-                            </a>
-                            <div class="text"> <!--text starts-->
-                              <h3><a href="details.php">kurta-shalwar-navy-blue</a></h3>
-                              <p class="price">50 Rs.</p>
-                            </div><!--text ends-->
-
-                            
-                          </div><!--product same-height ends-->
-                        </div><!--center-responsive col-md-3 col-sm-6 ends-->
-                      </div><!--row same height row endsss-->
-
-                    
-                  </div><!--COL MD 9 STARTS-->
-              </div><!--CONTAINER STARTS-->
-                
-          </div><!--container ends-->
-
-        </div> 
-          
-          
+          </form><!--buying box ends-->
+            
+        </div><!--box ends-->
+      </div><!--First row with main image box and thumbs-->
+    </div>
+ </div>
      
+</div>
+        
+        
+            
 
-
-         </div> 
-       
-
-
-          
+        
     </div>     
         
       </div>      
