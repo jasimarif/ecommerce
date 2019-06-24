@@ -127,7 +127,7 @@ include("functions/functions.php");
  </div>                     
 </nav>  
 
-<div class="container-flex" style="padding:15px; margin-top:-15px">
+<div class="container-fluid" style="padding:15px; margin-top:-15px">
   <!--Welcome Bar-->
   <div class="row">
     <?php include("includes/WelcomeBar.php"); ?>
