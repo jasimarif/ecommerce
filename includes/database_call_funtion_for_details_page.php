@@ -1,5 +1,9 @@
 <?php
   include("includes/db.php");
+  
+
+
+
   $product_title = "";
   $product_desc = "";
   $product_image = "";
@@ -15,6 +19,7 @@
     $details_query= "SELECT * FROM `products` WHERE `product_id`='$product_id'";
     $run_details_query = mysqli_query($con,$details_query);
     while($result=mysqli_fetch_array($run_details_query)){
+      
       $product_title = $result['product_title'];
       $product_desc = $result['product_desc'];
       $product_image = $result['product_image'];

@@ -142,7 +142,7 @@ include("functions/functions.php");
     <div class="container-flex col-sm-12">
       <div class="row m-1"><!--First row with main image box and thumbs-->
       <div class="col-sm-3.5"><!--Main Image starts-->
-            <img  id="MainImage" src="admin_area/product_images/<?php echo $image_array[0];?>" width="350" height="350"/>
+            <img class="zoom" id="MainImage" data-large="admin_area/product_images/<?php echo $image_array[0];?>" src="admin_area/product_images/<?php echo $image_array[0];?>" width="350" height="350"/>
         </div><!--Main Image ends-->
         <?php
          }
@@ -194,8 +194,8 @@ include("functions/functions.php");
               </div>
               <div class="form-group row text-center">
                 <button class="btn btn-primary" style="margin: auto;">
-                    <a>
-                        <i class="fas fa-shopping-cart"></i>Add to cart
+                    <a href='details.php?add_cart=<?php echo $produt_id;?>'>
+                        <i class="fas fa-shopping-cart"></i> <?php cart();?>Add to cart
                     </a>
                 </button>
                   
@@ -288,6 +288,16 @@ include("functions/functions.php");
           var image = document.getElementById("thumbs");
           image.classList.toggle('propchange');
         }
+      </script>
+      <script src = "Javascript/Stylish-Magnifying-Glass-Plugin-SergeLand-Image-Zoomer/zoomsl.min.js"></script>
+      <script>
+         $(function(){
+
+          
+          $(".zoom").imagezoomsl();
+
+        });
+
       </script>
       
       
