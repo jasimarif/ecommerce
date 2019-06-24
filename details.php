@@ -127,7 +127,6 @@ include("functions/functions.php");
  </div>                     
 </nav>  
 
-        <div id="shopping_cart" > 
 <div class="container-flex" style="padding:15px; margin-top:-15px">
   <!--Welcome Bar-->
   <div class="row">
