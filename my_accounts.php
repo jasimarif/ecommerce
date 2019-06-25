@@ -1,8 +1,9 @@
 <!doctype html>
 <?php
-
+ 
 session_start();
-include("functions/functions.php");  
+include("functions/functions.php"); 
+
 include("includes/include_body.php");
 ?>
 
@@ -13,16 +14,19 @@ include("includes/include_body.php");
 
         <div id="product_box"> 
         
-            <h3 id="products"> Products </h3>
+            <h1> Welcome </h1>
+            <?php
+            if(isset($_GET['edit_account']))
+            {
+                include("edit_account.php");
+            }
+             if(isset($_GET['change_pass']))
+            {
+                include("change_pass.php");
+            }
             
-             <?php getPro(); 
-            
-                getMenPro();
-                getWomenPro();
-                cart();
-                  
-            
-            ?> 
+            ?>
+           
         
         </div> 
       </div>      
