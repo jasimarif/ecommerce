@@ -61,42 +61,60 @@ session_start();
         
         <div class="col-sm-4 box" id="boxItem"><!--Box Starts--> 
           
-          <h3 class="text-center"><?php echo $product_title;?></h3>
-          
-          <form method="POST" action="" ><!--buying box starts-->
-            
-            <div class="form-group row ">
-              <label  for="quantity" class="col-sm-2 col-form-label">Quantity</label>
-              <div class="col-sm-9 ">
-                <input type="text" value="1" id="quantity" name="qty" onkeyup="updatePrice()" size="3" style="padding: 2px;"> ea
-              </div>
+          <h4 class="text-left"><?php echo $product_title;?></h3>
+          <div class="row no-gutters"><!--Star Rating-->
+            <div class="col-sm-4">
+                <span class="fa fa-star star-rating onchecked"></span>
+                <span class="fa fa-star star-rating onchecked"></span>
+                <span class="fa fa-star star-rating onchecked"></span>
+                <span class="fa fa-star star-rating onchecked"></span>
+                <span class="fa fa-star star-rating onchecked"></span>  
             </div>
-
-            <div class="form-group row ">
-                <label  for="Sizes" class="col-sm-2 col-form-label">Sizes</label>
-                <div class="col-sm-10 ">
-                  <select id="Sizes" name="sizes" size="1" style="height: 30px; padding:1px;" >
-                    <option>Small</option>
-                    <option>Medium</option>
-                    <option>Large</option>
-                  </select>
-                </div>
+            <div class="col-sm-4 ratings">
+              Ratings
             </div>
-
+            <div class="col-sm-4 ratings text-right">
+               <span><i class="fas fa-heart onClick"></i></span>
+            </div>
+            <hr style="color:gray;">
+          </div>
+          <div class="container col-sm-12">
+            <form method="POST" action="" ><!--buying box starts-->
               <div class="form-group row ">
-                  <label  for="Price" class="col-sm-2 col-form-label">Price:</label>
-                  <div class="col-sm-9" id="Price" style="line-height:35px"><?php echo $product_price;?></div>
+                  <label  for="Price" class="col-sm-2 col-form-label text-left">Price:</label>
+                  <div class="col-sm-9 text-left" id="Price" style="line-height:37px"><span style="color: orange; font-size:20px; ">Rs <?php echo $product_price;?></span> </div>
               </div>
-              <div class="form-group row text-center">
-                <button class="btn btn-primary" style="margin: auto;">
-                    <a href='details.php?add_cart=<?php echo $produt_id;?>'>
-                        <i class="fas fa-shopping-cart"></i> <?php cart();  ?>Add to cart
-                    </a>
-                </button>
-                  
+              <div class="form-group row ">
+                <label  for="quantity" class="col-sm-2 col-form-label">Quantity</label>
+                <div class="col-sm-9 ">
+                  <input type="text" value="1" id="quantity" name="qty" onkeyup="updatePrice()" size="3" style="padding: 2px;"> ea
+                </div>
               </div>
-
-          </form><!--buying box ends-->
+  
+              <div class="form-group row ">
+                  <label  for="Sizes" class="col-sm-2 col-form-label">Sizes</label>
+                  <div class="col-sm-10 ">
+                    <select id="Sizes" name="sizes" size="1" style="height: 30px; padding:1px;" >
+                      <option>Small</option>
+                      <option>Medium</option>
+                      <option>Large</option>
+                    </select>
+                  </div>
+              </div>
+  
+                
+                <div class="form-group row text-center">
+                  <button name="addcart" class="btn btn-primary" style="margin: auto;">
+                      <a>
+                          <i class="fas fa-shopping-cart"></i> <?php cart();  ?>Add to cart
+                      </a>
+                  </button>
+                    
+                </div>
+  
+            </form><!--buying box ends-->
+            
+          </div>
             
         </div><!--box ends-->
       </div><!--First row with main image box and thumbs-->
@@ -112,9 +130,10 @@ session_start();
             People also Viewed
         </div>
       </div><!--third people row ends-->
+      <hr>
       
-      <div class="row"><!--Fourth view row starts-->
-        <div class="col-sm-10">
+      <div class="row no-gutters text-center"><!--Fourth view row starts-->
+        <div class="col-sm-8.5">
           <div class="row"><!--iMAGES-->
             <?php 
              getPeopleAlsoView();
@@ -150,7 +169,7 @@ session_start();
                
                  document.getElementById("Price").innerHTML=ajax.responseText;  
               };
-        ajax.open('GET', 'ajax-details.php?value='+document.getElementById("quantity").value ,true);
+        ajax.open('GET', 'ajax-details.php?value='+document.getElementById("quantity").value+'&product_price='+document.getElementById("Price").value ,true);
         ajax.send();
          
         }

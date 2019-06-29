@@ -29,6 +29,23 @@
       $product_cat = $result['product_cat'];
       
     }
+    if(isset($_POST['addcart'])){
+      $ip=getIp();
+        $check_pro= "SELECT * FROM cart WHERE ip_add= '$ip' AND p_id= '$product_id' ";
+        $run_check= mysqli_query($con, $check_pro);
+        if(mysqli_num_rows($run_check)>0)
+        {
+            echo "<script>alert('Already added')</script>";
+        }
+        else
+        {
+            $insert_pro= "INSERT INTO `cart` (p_id,ip_add) values ('$product_id','$ip')";
+            $run_pro= mysqli_query($con,$insert_pro);
+            echo "<script>alert('Product added')</script>";
+            echo "<script> window.open('details.php','_self') </script>";
+            
+        }
+    }
     }
 
     function getPeopleAlsoView(){

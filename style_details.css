@@ -214,3 +214,18 @@ td
     box-shadow: 0 1px 5px rgba(0,0,0,0.1);
 
 }
+
+.star-rating{
+    font-size: 1em;
+}
+
+.onchecked{
+    color: yellow;
+}
+.ratings{
+    font-size: 8px;
+}
+.onClick{
+    color: red;
+}
+
