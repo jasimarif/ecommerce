@@ -130,7 +130,7 @@ include("functions/functions.php");
 <div class="container-fluid" style="padding:15px; margin-top:-15px">
   <!--Welcome Bar-->
   <div class="row">
-    <?php include("includes/WelcomeBar.php"); ?>
+    <?php include("includes/welcome_guest.php"); ?>
   </div>
   <!--Product details from database call-->
   <?php include("includes/database_call_funtion_for_details_page.php");
