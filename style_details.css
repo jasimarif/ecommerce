@@ -201,3 +201,31 @@ td
 {
     padding: 20px;
 }
+.propchange{
+    border: 2px solid orange;
+}
+
+.box{
+    background: #fff;
+    margin: 0 0 30px;
+    border: solid 1px #e6e6e6;
+    box-sizing: border-box;
+    padding: 20px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+
+}
+
+.star-rating{
+    font-size: 1em;
+}
+
+.onchecked{
+    color: yellow;
+}
+.ratings{
+    font-size: 8px;
+}
+.onClick{
+    color: red;
+}
+

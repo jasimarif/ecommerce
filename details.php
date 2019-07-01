@@ -1,36 +1,22 @@
 <!doctype html>
 <?php
 include("functions/functions.php");
+session_start();
 ?>
 
 
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-   
-     
-      <!--font awsome-->
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-      
-          <!-- Scrollbar Custom CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-  
-       <link rel="stylesheet" type="text/css" href="style_details.css" media="all">
-     <title>Tijarat</title>
+   <?php
+   include("includes/Head.php");
+   ?>
+   <link rel="stylesheet" type="text/css" href="style_details.css" media="all">
+    <title>Tijarat</title>
       
     </head>
-  <body>
-    
-    
-        
-    
+  <body>  
     <div class="wrapper"> 
+<<<<<<< HEAD
         
         <nav id="sidebar"> 
             <div class="sidebar-header"> 
@@ -134,6 +120,21 @@ include("functions/functions.php");
   </div>
   <!--Product details from database call-->
   <?php include("includes/database_call_funtion_for_details_page.php");
+=======
+      <!--SideBar-->
+      <?php include("includes/sidebar.php");   ?>          
+    <div id="contents">
+      <!--NAVBAR SETTINGS-->       
+      <?php include("includes/Navbar.php");   ?>
+
+    <div class="container-fluid" style="padding:15px; margin-top:-15px">
+      <!--Welcome Bar-->
+    <div class="row">
+      <?php include("includes/Welcome_guest.php"); ?>
+    </div>
+    <!--Product details from database call-->
+    <?php include("includes/database_call_funtion_for_details_page.php");
+>>>>>>> e35704c6e78eb011eb7ba83b8761cfeda4359a64
         $image_array = array($product_image,$product_image2,$product_image3);
         if(!empty($image_array[0])){  
   ?>
@@ -154,7 +155,7 @@ include("functions/functions.php");
           if(!empty($v)){
         ?> 
           <div class="row m-1">
-              <img id="thumbs"  onmouseover="cssChange()" onmouseout="cssChange()" onclick="showImage('admin_area/product_images/<?php echo $v;?>')" src="admin_area/product_images/<?php echo $v?>" width="50" height="50"/>
+              <img id="thumbs" onmouseover="cssChange()" onmouseout="cssChange()" onclick="showImage('admin_area/product_images/<?php echo $v;?>')" src="admin_area/product_images/<?php echo $v?>" width="50" height="50"/>
            </div>
                 
         <?php
@@ -166,42 +167,60 @@ include("functions/functions.php");
         
         <div class="col-sm-4 box" id="boxItem"><!--Box Starts--> 
           
-          <h3 class="text-center"><?php echo $product_title;?></h3>
-          
-          <form method="POST" action="" ><!--buying box starts-->
-            
-            <div class="form-group row ">
-              <label  for="quantity" class="col-sm-2 col-form-label">Quantity</label>
-              <div class="col-sm-9 ">
-                <input type="text" value="1" id="quantity" name="qty" onkeyup="updatePrice()" size="3" style="padding: 2px;"> ea
-              </div>
+          <h4 class="text-left"><?php echo $product_title;?></h3>
+          <div class="row no-gutters"><!--Star Rating-->
+            <div class="col-sm-4">
+                <span class="fa fa-star star-rating onchecked"></span>
+                <span class="fa fa-star star-rating onchecked"></span>
+                <span class="fa fa-star star-rating onchecked"></span>
+                <span class="fa fa-star star-rating onchecked"></span>
+                <span class="fa fa-star star-rating onchecked"></span>  
             </div>
-
-            <div class="form-group row ">
-                <label  for="Sizes" class="col-sm-2 col-form-label">Sizes</label>
-                <div class="col-sm-10 ">
-                  <select id="Sizes" name="sizes" size="1" style="height: 30px; padding:1px;" >
-                    <option>Small</option>
-                    <option>Medium</option>
-                    <option>Large</option>
-                  </select>
-                </div>
+            <div class="col-sm-4 ratings">
+              Ratings
             </div>
-
+            <div class="col-sm-4 ratings text-right">
+               <span><i class="fas fa-heart onClick"></i></span>
+            </div>
+            <hr style="color:gray;">
+          </div>
+          <div class="container col-sm-12">
+            <form method="POST" action="" ><!--buying box starts-->
               <div class="form-group row ">
-                  <label  for="Price" class="col-sm-2 col-form-label">Price:</label>
-                  <div class="col-sm-9" id="Price" style="line-height:35px"><?php echo $product_price;?></div>
+                  <label  for="Price" class="col-sm-2 col-form-label text-left">Price:</label>
+                  <div class="col-sm-9 text-left" id="Price" style="line-height:37px"><span style="color: orange; font-size:20px; ">Rs <?php echo $product_price;?></span> </div>
               </div>
-              <div class="form-group row text-center">
-                <button class="btn btn-primary" style="margin: auto;">
-                    <a href='details.php?add_cart=<?php echo $produt_id;?>'>
-                        <i class="fas fa-shopping-cart"></i> <?php cart();?>Add to cart
-                    </a>
-                </button>
-                  
+              <div class="form-group row ">
+                <label  for="quantity" class="col-sm-2 col-form-label">Quantity</label>
+                <div class="col-sm-9 ">
+                  <input type="text" value="1" id="quantity" name="qty" onkeyup="updatePrice()" size="3" style="padding: 2px;"> ea
+                </div>
               </div>
-
-          </form><!--buying box ends-->
+  
+              <div class="form-group row ">
+                  <label  for="Sizes" class="col-sm-2 col-form-label">Sizes</label>
+                  <div class="col-sm-10 ">
+                    <select id="Sizes" name="sizes" size="1" style="height: 30px; padding:1px;" >
+                      <option>Small</option>
+                      <option>Medium</option>
+                      <option>Large</option>
+                    </select>
+                  </div>
+              </div>
+  
+                
+                <div class="form-group row text-center">
+                  <button name="addcart" class="btn btn-primary" style="margin: auto;">
+                      <a>
+                          <i class="fas fa-shopping-cart"></i> <?php cart();  ?>Add to cart
+                      </a>
+                  </button>
+                    
+                </div>
+  
+            </form><!--buying box ends-->
+            
+          </div>
             
         </div><!--box ends-->
       </div><!--First row with main image box and thumbs-->
@@ -217,9 +236,10 @@ include("functions/functions.php");
             People also Viewed
         </div>
       </div><!--third people row ends-->
+      <hr>
       
-      <div class="row"><!--Fourth view row starts-->
-        <div class="col-sm-10">
+      <div class="row no-gutters text-center"><!--Fourth view row starts-->
+        <div class="col-sm-8.5">
           <div class="row"><!--iMAGES-->
             <?php 
              getPeopleAlsoView();
@@ -244,26 +264,9 @@ include("functions/functions.php");
 
         
     
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
-      <script>   
-      
-      $(document).ready(function(){
-          
-            $('#sidebarCollapse').on('click',function(){
-                
-                $('#sidebar').toggleClass('active')
-                
-                
-            }); 
-          
-      });
-    
-      
-      </script>
+      <?php
+      include("includes/MainFooter.php");
+      ?> 
       <script>
         function updatePrice(){
           var ajax= new XMLHttpRequest();
@@ -272,7 +275,7 @@ include("functions/functions.php");
                
                  document.getElementById("Price").innerHTML=ajax.responseText;  
               };
-        ajax.open('GET', 'ajax-details.php?value='+document.getElementById("quantity").value ,true);
+        ajax.open('GET', 'ajax-details.php?value='+document.getElementById("quantity").value+'&product_price='+document.getElementById("Price").value ,true);
         ajax.send();
          
         }
