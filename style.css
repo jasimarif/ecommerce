@@ -191,3 +191,7 @@
     left: 10px;
 }
 
+.border-image{
+    border: solid 10px #e6e6e6;
+}
+

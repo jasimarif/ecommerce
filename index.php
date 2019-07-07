@@ -22,19 +22,24 @@ include("functions/functions.php");
       <!--WelcomeBar-->
       <?php include("includes/welcome_guest.php");   ?>
       <!--Product_area-->
-        <div id="product_box"> 
-        
-            <h3 id="products"> Products </h3>
+        <div id="product_box"  class="" style="margin-top:60px;background-color:#F5F5F5" >
+          <div class="container-flex">
+            <div class="col-sm-12">
+              <div class="row">
+                  <?php 
+                  getPro(); 
+                  getMenPro();
+                  getWomenPro();
+                  cart();
+                    
+              
+                  ?> 
+          
+              </div>
+            </div>  
+          </div>  
+             
             
-             <?php getPro(); 
-            
-                getMenPro();
-                getWomenPro();
-                cart();
-                  
-            
-            ?> 
-        
         </div> 
       </div>      
         
@@ -43,4 +48,6 @@ include("functions/functions.php");
    include("includes/MainFooter.php");
    ?>      
     </body>
+    
+
 </html>
