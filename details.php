@@ -17,7 +17,7 @@ session_start();
   <body>  
     <div class="wrapper"> 
       <!--SideBar-->
-      <?php include("includes/sidebar.php");   ?>          
+      <?//php include("includes/sidebar.php");   ?>          
     <div id="contents">
       <!--NAVBAR SETTINGS-->       
       <?php include("includes/Navbar.php");   ?>
@@ -33,9 +33,9 @@ session_start();
         if(!empty($image_array[0])){  
   ?>
   <!--Product details Area-->
-<div id="MainContent">
-    <div class="container-flex col-sm-12">
-      <div class="row m-1"><!--First row with main image box and thumbs-->
+<div id="MainContent" class="container">
+    <div class="container-flex col-sm-10 box">
+      <div class="row m-1"><!--First r  ow with main image box and thumbs-->
       <div class="col-sm-3.5"><!--Main Image starts-->
             <img  id="MainImage" src="admin_area/product_images/<?php echo $image_array[0];?>" width="350" height="350"/>
         </div><!--Main Image ends-->
@@ -59,21 +59,21 @@ session_start();
       </div><!--sidethumbs ends-->
 
         
-        <div class="col-sm-4 box" id="boxItem"><!--Box Starts--> 
+        <div class="col-sm-6 box" id="boxItem"><!--Box Starts--> 
           
           <h4 class="text-left"><?php echo $product_title;?></h3>
           <div class="row no-gutters"><!--Star Rating-->
-            <div class="col-sm-4">
+            <div class="col-sm-5 col-md-6">
                 <span class="fa fa-star star-rating-1" onclick="starRating(1)"></span>
                 <span class="fa fa-star star-rating-2" onclick="starRating(2)"></span>
                 <span class="fa fa-star star-rating-3" onclick="starRating(3)"></span>
                 <span class="fa fa-star star-rating-4" onclick="starRating(4)"></span>
                 <span class="fa fa-star star-rating-5" onclick="starRating(5)"></span>  
             </div>
-            <div class="col-sm-4 ratings">
+            <div class="col-sm-3 col-md-3 ratings">
               Ratings
             </div>
-            <div class="col-sm-4 text-right" >
+            <div class="col-sm-4 col-md-3 text-right" >
                <span><i class="fas fa-heart" id="heartShape" onclick="save()"></i></span>
             </div>
           </div><!--star rating and save ends-->
@@ -120,19 +120,22 @@ session_start();
       </div><!--First row with main image box and thumbs-->
       <div class="row mt-4"><!--Second description row starts-->
         
-        <div class="col-sm-10">
+        <div class="col-sm-12">
           <h4 > Product Description </h2>
-            <div class="box col-sm-10"><?php echo $product_desc ;?></div>
+            <div class="box col-sm-12"><?php echo $product_desc ;?></div>
         </div>
       </div><!--Second description row ends-->
       <div class="row"><!--third people row starts-->
-        <div class="col-sm-10">
+        <div class="col-sm-12 alsoViewed" style="text-align:center;font-weight: bold;">
             People also Viewed
         </div>
       </div><!--third people row ends-->
-      <hr>
+      <div class="col-sm-12">
+        <hr width="70%" >
+      </div>
       
-      <div class="row no-gutters text-center"><!--Fourth view row starts-->
+      
+      <div class="row no-gutters text-center" style="background:#F5F5F5;"><!--Fourth view row starts-->
         <div class="col-sm-8.5">
           <div class="row"><!--iMAGES-->
             <?php 

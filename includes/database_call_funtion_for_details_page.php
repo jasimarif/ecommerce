@@ -74,15 +74,15 @@
         $price = $resultViewQuery['product_price'];
         echo 
           "
-          <div class='col-sm-3'>
+          <div class='col-sm-3 bottomImages text-left boxImage mx-auto'>
           <a href='details.php?pro_id=$id'>
               <img src='admin_area/product_images/$image' width='200' height='200'>
-              <p style='text-align: center'>
+              <div class='my-1' style='color:black;'>
                 $title
-              </p>
-              <p style='text-align: center'>
+              </div>
+              <div class='my-0' style='color:orange;margin-top:-2px;'>
                   $price
-              </p>
+              </div>
           </a>
             
           </div>
