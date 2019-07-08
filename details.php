@@ -105,7 +105,7 @@ session_start();
                 
                 <div class="form-group row text-center">
                   <button name="addcart" class="btn btn-primary" style="margin: auto;">
-                      <a href="">
+                      <a href="details.php?$product_id">
                           <i class="fas fa-shopping-cart"></i> Add to cart
                       </a>
                   </button>
