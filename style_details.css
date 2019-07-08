@@ -201,3 +201,60 @@ td
 {
     padding: 20px;
 }
+.propchange{
+    border: 2px solid orange;
+}
+
+.box{
+    background: #fff;
+    margin: 0 0 30px;
+    border: solid 1px #e6e6e6;
+    box-sizing: border-box;
+    padding: 20px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+
+th
+{
+    text-align: center;
+    padding: 20px;
+}
+
+.star-rating{
+    font-size: 1em;
+}
+
+.onchecked{
+    color: orange;
+}
+.ratings{
+    font-size: 8px;
+}
+.onClick{
+    color: red;
+}
+
+.alsoViewed{
+    background-color: gray;
+    font-weight: bold;
+    font-size: 30;
+
+
+}
+
+#MainImage{
+    border: solid 1px #e6e6e6;
+}
+
+.bottomImages{
+    border: solid 1px #e6e6e6;
+    
+}
+.boxImage{
+    background: #fff;
+    margin: 5px;
+    border: solid 1px #e6e6e6;
+    box-sizing: border-box;
+    padding: 15px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+
+}

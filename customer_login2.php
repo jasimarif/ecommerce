@@ -58,7 +58,11 @@ include("functions/connection.php");
         else
         {
         $ip=getIp();
+<<<<<<< HEAD
         $sel_cart="SELECT * FROM cart where ip_add='$ip'";
+=======
+        $sel_cart="SELECT * FROM cart where ip_add='$ip' AND customer_email='$c_email'";
+>>>>>>> DetailsPage
         $run_cart=mysqli_query($con,$sel_cart);
         $check_cart= mysqli_num_rows($run_cart);
         
@@ -66,7 +70,11 @@ include("functions/connection.php");
         {
             $_SESSION['customer_email']=$c_email;
             echo "<script>alert('logged in sucessfully')</script>";
+<<<<<<< HEAD
             echo "<script>window.open('customer/my_accounts.php','_self')</script>";
+=======
+            echo "<script>window.open('my_accounts.php','_self')</script>";
+>>>>>>> DetailsPage
             
             }
         else
