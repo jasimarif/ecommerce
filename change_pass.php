@@ -18,11 +18,7 @@ $c_id=$row_customer['customer_id'];
       <h1 class="h3 mb-3 font-weight-normal text-center">Change Password</h1>
       <div class="row"> 
           <div class="col-sm-2 col-md-2"> 
-<<<<<<< HEAD
             <p>Old Password:</p>
-=======
-            <p>Current Password:</p>
->>>>>>> DetailsPage
             
           </div>
           <div class="col-sm-2 col-md-2">
@@ -57,10 +53,6 @@ $c_id=$row_customer['customer_id'];
 if(isset($_POST['update']))
 {
 $ip=getIp();
-<<<<<<< HEAD
-=======
-$user=$_SESSION['email'];
->>>>>>> DetailsPage
 $old_pass=$_POST['old_pass'];
 $new_pass=$_POST['new_pass'];    
 $check_pass= "SELECT * FROM customers WHERE customer_pass=SHA('$old_pass')";
@@ -68,11 +60,6 @@ $run_pass=mysqli_query($con,$check_pass);
 $row_customer=mysqli_fetch_array($run_pass);
 $customer_email=$row_customer['customer_email'];    
 $match_pass=mysqli_num_rows($run_pass);
-<<<<<<< HEAD
-if(($match_pass>0) AND ($_POST['new_pass'])==($_POST['new_pass_again']))
-{
-    $update_query= "UPDATE customers set customer_pass=SHA('$new_pass') WHERE customer_ip='$ip' AND customer_email='$customer_email'";
-=======
     
 if($match_pass==0)
 {
@@ -87,7 +74,6 @@ if($_POST['new_pass']!=($_POST['new_pass_again']))
 if(($match_pass>0) AND ($_POST['new_pass'])==($_POST['new_pass_again']))
 {
     $update_query= "UPDATE customers set customer_pass=SHA('$new_pass') WHERE customer_ip='$ip' AND customer_email='$user'";
->>>>>>> DetailsPage
     if($run_update=mysqli_query($con,$update_query))
     {    
     echo "<script>alert('Password Changed')</script>";}
@@ -98,13 +84,10 @@ else
      echo "<script>alert('Password not Changed')</script>";
 }
     
-<<<<<<< HEAD
     
     
     
     
-=======
->>>>>>> DetailsPage
 }
 
 ?>

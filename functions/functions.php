@@ -176,7 +176,7 @@ function all_pro_cart()
 //counting the total items
 function totalItems()
 {
-    if(!isset($_SESSION['email'])) 
+    if(isset($_SESSION['email'])) 
     { 
         if (isset($_GET['add_cart']))
     {

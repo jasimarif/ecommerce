@@ -43,8 +43,7 @@
           
        
    <form class="form-inline">
-     <button class="btn btn-sm mx-4 btn-outline-success" type="button">Sign Up</button>
-     <button class="btn btn-sm btn-outline-primary" type="button">Sign In</button>
+     <?php include("include_toggle_logout.php"); ?>
    </form>
  
    </div>
