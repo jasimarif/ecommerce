@@ -23,9 +23,7 @@
          <a class="nav-link" href="all_products.php"> All Products </a>
        </li>
          
-         <li class="nav-item  ">
-         <a class="nav-link" href="my_accounts.php"> <i class="fas fa-user"></i> My Account <span class="sr-only">(current)</span></a>
-       </li>
+        <?php include("include_my_account.php");?>
       
        <li class="nav-item ">
          <a class="nav-link" href="#"> <i class="fas fa-shopping-cart"></i>Shopping Cart <span class="sr-only">(current)</span></a>

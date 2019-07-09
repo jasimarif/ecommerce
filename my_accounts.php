@@ -13,10 +13,7 @@ include("functions/functions.php");
     </head>
   <body>
     
-  <?php
-      if(isset($_SESSION['customer_email']))
-      {   
-        ?>
+ 
         
     
     <div class="wrapper"> 
@@ -82,11 +79,7 @@ include("functions/functions.php");
 <?php
    include("includes/MainFooter.php");
           ?>  
-<?php 
-} else {
-  echo "<script> window.open('customer_login.php','_self') </script>";
-}
-?>
+
       
       
       

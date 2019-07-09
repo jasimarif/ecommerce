@@ -359,7 +359,7 @@ function getPro()
 
         echo "
            
-        <div class='col-sm-3 my-2 singleProduct' onmouseover='border()'>    
+        <div class='col-sm-4 my-4 singleProduct' onmouseover='border()'>    
         <div class='card' style='width: 18rem;'>
         <a href='details.php?pro_id=$pro_id'><img class='card-img-top' src='admin_area/product_images/$pro_image' alt='$pro_title image'  width='180' height='200'></a>
         <div class='card-body'>
