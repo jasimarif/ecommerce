@@ -14,7 +14,7 @@ include("functions/functions.php");
   <body>  
     <div class="wrapper"> 
       <!--SideBar-->
-      <?php include("includes/sidebar.php");   ?>          
+             
     <div id="contents">
       <!--NAVBAR SETTINGS-->       
       <?php include("includes/Navbar.php");   ?>
