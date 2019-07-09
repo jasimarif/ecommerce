@@ -26,7 +26,7 @@
         <?php include("include_my_account.php");?>
       
        <li class="nav-item ">
-         <a class="nav-link" href="#"> <i class="fas fa-shopping-cart"></i>Shopping Cart <span class="sr-only">(current)</span></a>
+         <a class="nav-link" href="cart.php"> <i class="fas fa-shopping-cart"></i>Shopping Cart <span class="sr-only">(current)</span></a>
        </li>
      </ul>
  
