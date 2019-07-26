@@ -104,12 +104,11 @@ session_start();
   
                 
                 <div class="form-group row text-center">
-                  <button name="addcart" class="btn btn-primary" style="margin: auto;">
-                      <a href="details.php?$product_id">
+                  
+                    <button name="addcart" class="btn btn-primary" style="margin: auto;">  
                           <i class="fas fa-shopping-cart"></i> Add to cart
-                      </a>
-                  </button>
-                    
+                    </button>
+                  
                 </div>
   
             </form><!--buying box ends-->

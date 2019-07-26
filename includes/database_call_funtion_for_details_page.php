@@ -42,7 +42,7 @@
             $insert_pro= "INSERT INTO `cart` (p_id,ip_add) values ('$product_id','$ip')";
             $run_pro= mysqli_query($con,$insert_pro);
             echo "<script>alert('Product added')</script>";
-            echo "<script> window.open('details.php','_self') </script>";
+            echo "<script> window.open('details.php?pro_id=$product_id','_self') </script>";
             
         }
     }

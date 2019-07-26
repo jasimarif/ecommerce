@@ -2,10 +2,10 @@
 
 <div id="shopping_cart" > 
 <span style="float: right; padding:5px; line-height: 40px; font-size: 18px;" >
-        <?php
+        <?php   
              if(isset($_SESSION['customer_email']) OR (isset($_SESSION['email'])))
              {
-                 echo "<b> Welcome </b>". $_SESSION['email'] . "<b> Your</b>" ;
+                 echo "<b> Welcome </b>". $_SESSION['customer_email'] . "<b> Your</b>" ;
              }
              else
              {

@@ -1,6 +1,6 @@
 <?php
 
-if(!isset($_SESSION['customer_email']))
+if(isset($_SESSION['customer_email']))
           if(!isset($_SESSION['email']))
           
       {   
