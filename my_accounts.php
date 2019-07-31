@@ -22,24 +22,17 @@ include("functions/functions.php");
             <div class="sidebar-header"> 
                 <h3> My Account </h3>
             </div>
-            <ul class="list-unstyled components">
-                
-                         
-                <li class="active"> 
-                     
-                            
-                    <ul class="list-unstyled"  id="mens_menu">
+          
+                    <ul>
                         
                         <li> <a href="my_accounts.php?my_orders"> Orders</a> </li>
                         <li> <a href="my_accounts.php?edit_account"> Edit Account</a> </li>
                         <li> <a href="my_accounts.php?change_pass"> Change password</a> </li>
-                        <li> <a href="my_accounts.php?delete_account"> Delete Account</a> </li>
+                       
                        
                     </ul>
                      </li>
-                
-                            
-            </ul>
+          
             
           
           </nav>

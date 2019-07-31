@@ -13,15 +13,14 @@ session_start();
     </head>
   <body>  
     <div class="wrapper"> 
-      <!--SideBar-->
-      <?php include("includes/sidebar.php");   ?>          
+              
     <div id="contents">
       <!--NAVBAR SETTINGS-->       
       <?php include("includes/Navbar.php");   ?>
       <!--WelcomeBar-->
-      <?php include("includes/welcome_guest.php");   ?>
+      <?php include("includes/WelcomeBar.php");   ?>
 
-      <div id="product_box"  class="" style="margin-top:60px;background-color:#F5F5F5" >
+      <div id="product_box"  class="" style="margin-top:60px;background-color:white" >
           <div class="container-flex">
              <div class="col-sm-12" style="margin-left:3%;">
               <div class="row">

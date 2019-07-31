@@ -25,7 +25,7 @@ session_start();
     <div class="container-fluid" style="padding:15px; margin-top:-15px">
       <!--Welcome Bar-->
     <div class="row">
-      <?php include("includes/Welcome_guest.php"); ?>
+      <?php include("includes/WelcomeBar.php"); ?>
     </div>
     <!--Product details from database call-->
     <?php include("includes/database_call_funtion_for_details_page.php");
@@ -105,9 +105,9 @@ session_start();
                 
                 <div class="form-group row text-center">
                   <button name="addcart" class="btn btn-primary" style="margin: auto;">
-                      <a href="details.php?$product_id">
+                      
                           <i class="fas fa-shopping-cart"></i> Add to cart
-                      </a>
+                      
                   </button>
                     
                 </div>

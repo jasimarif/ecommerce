@@ -21,7 +21,11 @@ function getCart()
       $total=0;
             global $con;
             $ip=getIp();
-            $sel_price= "SELECT * FROM cart where ip_add='$ip'";
+            
+            if(isset($_SESSION['email']))
+            {    
+            $email=$_SESSION['email'];   
+            $sel_price= "SELECT * FROM cart where ip_add='$ip' ";
             $run_price=mysqli_query($con, $sel_price);
             while($p_price=mysqli_fetch_array($run_price))
             {
@@ -44,7 +48,7 @@ echo "
                  <tr>
                     <td> <input type='checkbox' name='remove[]' value='$pro_id;'> </td>
                     <td > <b> $product_title </b><br>   
-                        <img src='admin_area/product_images/$product_image' width='100' height='100'/>                      
+                       <img src='admin_area/product_images/$product_image' width='100' height='100'/>                
                      </td>
                     <td> <input type='text' size='4' name='qty'> </td>
                   
@@ -64,9 +68,55 @@ echo "
                  </tr>
     
             ";
+          }  
+    if(!isset($_SESSION['email']))
+            {    
+              
+            $sel_price= "SELECT * FROM cart where ip_add='$ip' ";
+            $run_price=mysqli_query($con, $sel_price);
+            while($p_price=mysqli_fetch_array($run_price))
+            {
+                $pro_id=$p_price['p_id'];
+                $pro_query= "SELECT * FROM products WHERE product_id='$pro_id'";
+                $run_query=mysqli_query($con,$pro_query);
+                while($pp_price=mysqli_fetch_array($run_query))
+                {
+                    $product_price=array($pp_price['product_price']);
+                    $product_title=$pp_price['product_title'];
+                    $product_image=$pp_price['product_image'];
+                    $single_price=$pp_price['product_price'];
+                    $sum=array_sum($product_price);
+                    $total+=$sum;
+                    
+                    
+echo " 
+        </tr>
+                 
+                 <tr>
+                    <td> <input type='checkbox' name='remove[]' value='$pro_id;'> </td>
+                    <td > <b> $product_title </b><br>   
+                       <img src='admin_area/product_images/$product_image' width='100' height='100'/>                
+                     </td>
+                    <td> <input type='text' size='4' name='qty'> </td>
+                  
+                    <td> $single_price</td>
+                 
+                 
+                 </tr>"   ;
+            
+                 
+                } }
     
+    echo "
+             <tr> 
+                 
+                 <td colspan='3'> </td>
+                <td> <b> Total: $total </b></td>
+                 </tr>
+    
+            ";
                                
-
+}
 }
 
 
@@ -97,13 +147,15 @@ function cart()
         }
        
     }}
-     elseif(isset($_SESSION['email']))
+    if(isset($_SESSION['email']))
+     {
          if (isset($_GET['add_cart']))
+     
         {
         $email=$_SESSION['email'];
         $ip=getIp();
         $pro_id = $_GET['add_cart'];
-        $check_pro= "SELECT * FROM cart WHERE ip_add= '$ip' AND p_id= '$pro_id' ";
+        $check_pro= "SELECT * FROM cart WHERE ip_add= '$ip' AND p_id= '$pro_id' AND customer_email='$email' ";
         $run_check= mysqli_query($con, $check_pro);
         if(mysqli_num_rows($run_check)>0)
         {
@@ -111,7 +163,7 @@ function cart()
         }
         else
         {
-            $insert_pro= "INSERT INTO `cart` (p_id,ip_add,customer_email) values ('$pro_id','$ip','$email')";
+            $insert_pro= "INSERT INTO `cart` (p_id,customer_email,ip_add) values ('$pro_id','$email','$ip')";
             $run_pro= mysqli_query($con,$insert_pro);
             echo "<script>alert('Product added')</script>";
             echo "<script> window.open('index.php','_self') </script>";
@@ -119,6 +171,7 @@ function cart()
         } 
             
         }
+    }
     
     
     
@@ -149,8 +202,10 @@ function all_pro_cart()
         }
     }
     }
-    elseif(isset($_SESSION['email']))
+    if(isset($_SESSION['email']))
+    {
          if (isset($_GET['add_cart']))
+    
         {
         $email=$_SESSION['email'];
         $ip=getIp();
@@ -166,13 +221,113 @@ function all_pro_cart()
             $insert_pro= "INSERT INTO `cart` (p_id,ip_add,customer_email) values ('$pro_id','$ip','$email')";
             $run_pro= mysqli_query($con,$insert_pro);
             echo "<script>alert('Product added')</script>";
-            echo "<script> window.open('index.php','_self') </script>";
+            echo "<script> window.open('all_products.php','_self') </script>";
             
         } 
 }
 }
+}
+//redirects to women page
+function all_pro_cart_women()
+{
+    global $con;
+    if(!isset($_SESSION['email'])) 
+    {   
+        if (isset($_GET['add_cart']))
+    {
+        $ip=getIp();
+        $pro_id = $_GET['add_cart'];
+        $check_pro= "SELECT * FROM cart WHERE ip_add= '$ip' AND p_id= '$pro_id' ";
+        $run_check= mysqli_query($con, $check_pro);
+        if(mysqli_num_rows($run_check)>0)
+        {
+            echo "<script>alert('Already added')</script>";
+        }
+        else
+        {
+            $insert_pro= "INSERT INTO `cart` (p_id,ip_add) values ('$pro_id','$ip')";
+            $run_pro= mysqli_query($con,$insert_pro);
+            echo "<script>alert('Product added')</script>";
+            echo "<script> window.open('all_products_women.php','_self') </script>";
+        }
+    }
+    }
+    if(isset($_SESSION['email']))
+    {
+         if (isset($_GET['add_cart']))
+    
+        {
+        $email=$_SESSION['email'];
+        $ip=getIp();
+        $pro_id = $_GET['add_cart'];
+        $check_pro= "SELECT * FROM cart WHERE ip_add= '$ip' AND p_id= '$pro_id' ";
+        $run_check= mysqli_query($con, $check_pro);
+        if(mysqli_num_rows($run_check)>0)
+        {
+            echo "<script>alert('Already added')</script>";
+        }
+        else
+        {
+            $insert_pro= "INSERT INTO `cart` (p_id,ip_add,customer_email) values ('$pro_id','$ip','$email')";
+            $run_pro= mysqli_query($con,$insert_pro);
+            echo "<script>alert('Product added')</script>";
+            echo "<script> window.open('all_products_women.php','_self') </script>";
+            
+        } 
+}
+}
+}
 
-
+//redirects to men page
+function all_pro_cart_men()
+{
+    global $con;
+    if(!isset($_SESSION['email'])) 
+    {   
+        if (isset($_GET['add_cart']))
+    {
+        $ip=getIp();
+        $pro_id = $_GET['add_cart'];
+        $check_pro= "SELECT * FROM cart WHERE ip_add= '$ip' AND p_id= '$pro_id' ";
+        $run_check= mysqli_query($con, $check_pro);
+        if(mysqli_num_rows($run_check)>0)
+        {
+            echo "<script>alert('Already added')</script>";
+        }
+        else
+        {
+            $insert_pro= "INSERT INTO `cart` (p_id,ip_add) values ('$pro_id','$ip')";
+            $run_pro= mysqli_query($con,$insert_pro);
+            echo "<script>alert('Product added')</script>";
+            echo "<script> window.open('all_products_men.php','_self') </script>";
+        }
+    }
+    }
+    if(isset($_SESSION['email']))
+    {
+         if (isset($_GET['add_cart']))
+    
+        {
+        $email=$_SESSION['email'];
+        $ip=getIp();
+        $pro_id = $_GET['add_cart'];
+        $check_pro= "SELECT * FROM cart WHERE ip_add= '$ip' AND p_id= '$pro_id' ";
+        $run_check= mysqli_query($con, $check_pro);
+        if(mysqli_num_rows($run_check)>0)
+        {
+            echo "<script>alert('Already added')</script>";
+        }
+        else
+        {
+            $insert_pro= "INSERT INTO `cart` (p_id,ip_add,customer_email) values ('$pro_id','$ip','$email')";
+            $run_pro= mysqli_query($con,$insert_pro);
+            echo "<script>alert('Product added')</script>";
+            echo "<script> window.open('all_products_men.php','_self') </script>";
+            
+        } 
+}
+}
+}
 //counting the total items
 function totalItems()
 {
@@ -191,6 +346,7 @@ function totalItems()
     else
     {
         global $con;
+        $email=$_SESSION['email'];
         $ip= getIp();
         $get_items= "SELECT * FROM cart WHERE ip_add='$ip'";
         $run_items=mysqli_query($con,$get_items);
@@ -200,86 +356,137 @@ function totalItems()
     echo $count_items;
     
     }
-    elseif(isset($_SESSION['email']))
-    {
-         if (isset($_GET['add_cart']))
-         {
-        global $con;
-        $email=$_SESSION['email'];
-        $ip= getIp();
-        $get_items= "SELECT * FROM cart WHERE ip_add='$ip' AND customer_email='$email'";
-        $run_items=mysqli_query($con,$get_items);
-        $count_items= mysqli_num_rows($run_items);
-        
-    }
+
     else
     {
-        global $con;
-        $email=$_SESSION['email'];
-        $ip= getIp();
-        $get_items= "SELECT * FROM cart WHERE ip_add='$ip' AND customer_email='$email'";
-        $run_items=mysqli_query($con,$get_items);
-        $count_items= mysqli_num_rows($run_items);
-    }    
-     echo $count_items;        
-             
-}}
+         if(!isset($_SESSION['email']))
+        { 
+           if (isset($_GET['add_cart']))
+            {
+            global $con;
+          
+            $ip= getIp();
+            $get_items= "SELECT * FROM cart WHERE ip_add='$ip'";
+            $run_items=mysqli_query($con,$get_items);
+            $count_items= mysqli_num_rows($run_items);
+            
+        }
+        else
+        {
+            global $con;
+            $ip= getIp();
+            $get_items= "SELECT * FROM cart WHERE ip_add='$ip'";
+            $run_items=mysqli_query($con,$get_items);
+            $count_items= mysqli_num_rows($run_items);
+        }
+        echo $count_items;
+    }
 
+   }
+}
 //getting the total price
 
 function totalPrice()
 {
-    $total=0;
+   $total=0;
     global $con;
     $ip=getIp();
      if(!isset($_SESSION['email'])) 
     { 
         if (isset($_GET['add_cart']))
-    {
-    $sel_price= "SELECT * FROM cart where ip_add='$ip'";
-    $run_price=mysqli_query($con, $sel_price);
-    while($p_price=mysqli_fetch_array($run_price))
-    {
-        $pro_id=$p_price['p_id'];
-        $pro_query= "SELECT * FROM products WHERE product_id='$pro_id'";
-        $run_query=mysqli_query($con,$pro_query);
-        while($pp_price=mysqli_fetch_array($run_query))
         {
-            $product_price=array($pp_price['product_price']);
-            $sum=array_sum($product_price);
-            $total+=$sum;
-            
+        $sel_price= "SELECT * FROM cart where ip_add='$ip'";
+        $run_price=mysqli_query($con, $sel_price);
+        while($p_price=mysqli_fetch_array($run_price))
+        {
+            $pro_id=$p_price['p_id'];
+            $pro_query= "SELECT * FROM products WHERE product_id='$pro_id'";
+            $run_query=mysqli_query($con,$pro_query);
+            while($pp_price=mysqli_fetch_array($run_query))
+            {
+                $product_price=array($pp_price['product_price']);
+                $sum=array_sum($product_price);
+                $total+=$sum;
+                
+            }
+                
         }
-            
+            echo "PKR $total" ;
+        }
+
+        else
+        {
+         $sel_price= "SELECT * FROM cart where ip_add='$ip'";
+        $run_price=mysqli_query($con, $sel_price);
+        while($p_price=mysqli_fetch_array($run_price))
+        {
+            $pro_id=$p_price['p_id'];
+            $pro_query= "SELECT * FROM products WHERE product_id='$pro_id'";
+            $run_query=mysqli_query($con,$pro_query);
+            while($pp_price=mysqli_fetch_array($run_query))
+            {
+                $product_price=array($pp_price['product_price']);
+                $sum=array_sum($product_price);
+                $total+=$sum;
+                
+            }
+                
+        }
+        echo "PKR $total" ;   
+        }
+    
     }
-    echo "PKR $total ";
-        }}
     
     
      elseif(isset($_SESSION['email'])) 
     { 
+        $email=$_SESSION['email'];
         if (isset($_GET['add_cart']))
-    {
-     $email=$_SESSION['email'];        
-    $sel_price= "SELECT * FROM cart where ip_add='$ip' AND customer_email='$email'";
-    $run_price=mysqli_query($con, $sel_price);
-    while($p_price=mysqli_fetch_array($run_price))
-    {
-        $pro_id=$p_price['p_id'];
-        $pro_query= "SELECT * FROM products WHERE product_id='$pro_id'";
-        $run_query=mysqli_query($con,$pro_query);
-        while($pp_price=mysqli_fetch_array($run_query))
         {
-            $product_price=array($pp_price['product_price']);
-            $sum=array_sum($product_price);
-            $total+=$sum;
-            
+        $email=$_SESSION['email'];        
+        $sel_price= "SELECT * FROM cart where ip_add='$ip'";
+        $run_price=mysqli_query($con, $sel_price);
+        while($p_price=mysqli_fetch_array($run_price))
+        {
+            $pro_id=$p_price['p_id'];
+            $pro_query= "SELECT * FROM products WHERE product_id='$pro_id'";
+            $run_query=mysqli_query($con,$pro_query);
+            while($pp_price=mysqli_fetch_array($run_query))
+            {
+                $product_price=array($pp_price['product_price']);
+                $sum=array_sum($product_price);
+                $total+=$sum;
+                
+            }
+                
         }
-            
-    }
-    echo "PKR $total ";
-        }}
          
+          }
+        else
+        {
+                
+        $sel_price= "SELECT * FROM cart where ip_add='$ip'";
+
+        $run_price=mysqli_query($con, $sel_price);
+        while($p_price=mysqli_fetch_array($run_price))
+        {
+            $pro_id=$p_price['p_id'];
+            $pro_query= "SELECT * FROM products WHERE product_id='$pro_id'";
+            $run_query=mysqli_query($con,$pro_query);
+            while($pp_price=mysqli_fetch_array($run_query))
+            {
+                $product_price=array($pp_price['product_price']);
+                $sum=array_sum($product_price);
+                $total+=$sum;
+                
+            }
+                
+        }   
+        }
+    echo "PKR $total" ;
+    }
+       
+             
 }
 
 
@@ -316,7 +523,7 @@ function getTypes()
         $type_id= $row_type['type_id'];
         $type_title= $row_type['type_title'];
 
-        echo "<li><a href='index.php?type_id=$type_title'> $type_title </a></li>" ;
+        echo "<li><a href='cat.php?type_id=$type_title'> $type_title </a></li>" ;
     }
 }
 
@@ -334,7 +541,7 @@ function getwomen()
         $women_id= $row_women['id'];
         $women_title= $row_women['type'];
 
-        echo "<li><a href='index.php?women_id=$women_title'> $women_title </a></li>" ;
+        echo "<li><a href='cat.php?women_id=$women_title'> $women_title </a></li>" ;
     }
 }
 
@@ -357,10 +564,57 @@ function getPro()
         $pro_price=$row_pro['product_price'];
         $pro_image=$row_pro['product_image'];
 
-       include("includes/include_single_product.php");
+        echo "
+           
+            
+            <div id=single_product> 
+            <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
+            <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
+            <p> PKR $pro_price </p>
+            <a href='cat.php?add_cart=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+                
+            </div>
+        
+        ";
     }
         }
 }
+
+function search()
+{
+    global $con;
+    if (isset($_GET['search']))
+            {
+                $search_query= $_GET['user_query'];
+            
+            
+            $get_pro= "SELECT * FROM products WHERE product_keywords LIKE '%$search_query%'";
+    $run_pro= mysqli_query($con, $get_pro);
+    while($row_pro=mysqli_fetch_array($run_pro))
+    {
+        $pro_id=$row_pro['product_id'];
+        $pro_cat=$row_pro['product_cat'];
+        $pro_type=$row_pro['product_type'];
+        $pro_title=$row_pro['product_title'];
+        $pro_price=$row_pro['product_price'];
+        $pro_image=$row_pro['product_image'];
+
+        echo "
+           
+            
+            <div id=single_product> 
+            <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
+            <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
+            <p> PKR $pro_price </p>
+            <a href='index.php?pro_id=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+                
+            </div>
+        
+        ";
+    }
+            }
+}
+
 
 function getMenPro()
 
@@ -387,7 +641,18 @@ function getMenPro()
        
         $pro_image=$row_men_pro['product_image'];
 
-         include("includes/include_single_product.php");
+        echo "
+           
+            
+            <div id=single_product> 
+            <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
+            <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
+            <p> PKR $pro_price </p>
+            <a href='cat.php?add_cart=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+                
+            </div>
+        
+        ";
     }
         
         }
@@ -401,7 +666,7 @@ function getWomenPro()
         
         {
         
-        $women_title=$_GET['women_id'];
+    $women_title=$_GET['women_id'];
     $get_women_pro= "SELECT * FROM products WHERE product_cat= '2' AND product_type='$women_title'";
     $run_women_pro= mysqli_query($con, $get_women_pro);
     while($row_women_pro=mysqli_fetch_array($run_women_pro))
@@ -414,12 +679,22 @@ function getWomenPro()
        
         $pro_image=$row_women_pro['product_image'];
 
-         include("includes/include_single_product.php");
+        echo "
+           
+            
+            <div id='single_product'> 
+            <a href='details.php?pro_id=$pro_id' >  <p>  $pro_title  </p> </a>
+            <a href='details.php?pro_id=$pro_id'> <img src='admin_area/product_images/$pro_image' width='180' height='200' /> </a>
+            <p> PKR $pro_price </p>
+            <a href='cat.php?add_cart=$pro_id'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button> </a>     
+                
+            </div>
+        
+        ";
     }
         
         }
 }
-
 
 
 

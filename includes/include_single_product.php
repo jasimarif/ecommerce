@@ -14,7 +14,7 @@ echo "
         </div>
         
         <div class='card-body' style='margin-top:-35px'>
-          <a href='index.php?add_cart=$pro_id' class='card-link'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button></a>
+          <a href='all_products.php?add_cart=$pro_id' class='card-link'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button></a>
         </div>
       </div>
       </div>

@@ -13,13 +13,12 @@ session_start();
     </head>
   <body>  
     <div class="wrapper"> 
-      <!--SideBar-->
-      <?php include("includes/sidebar.php");   ?>          
+             
     <div id="contents">
       <!--NAVBAR SETTINGS-->       
       <?php include("includes/Navbar.php");   ?>
       <!--WelcomeBar-->
-      <?php include("includes/welcome_guest.php");   ?>
+      <?php include("includes/WelcomeBar.php");   ?>
 
 
     <div id="product_box"> 
