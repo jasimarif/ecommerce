@@ -23,7 +23,7 @@ session_start();
 
       <div id="product_box"  class="" style="margin-top:60px;background-color:#F5F5F5" >
           <div class="container-flex">
-            <div class="col-sm-12">
+             <div class="col-sm-12" style="margin-left:3%;">
               <div class="row">
                  
                     <?php 
@@ -38,33 +38,7 @@ session_start();
              $pro_price=$row_pro['product_price'];
              $pro_image=$row_pro['product_image'];
      
-             echo "
-                
-                 
-             <div class='col-sm-3 my-2 singleProduct' onmouseover='border()'>    
-             <div class='card' style='width: 18rem;'>
-             <a href='details.php?pro_id=$pro_id'><img class='card-img-top' src='admin_area/product_images/$pro_image' alt='$pro_title image'  width='180' height='200'></a>
-             <div class='card-body'>
-               <h5 class='card-title'>$pro_title</h5>
-             </div>
-             <div class='card-body text-center' style='margin-top:-45px; color:orange; font-size:20px;'>
-               $pro_price
-             </div>
-             
-             <div class='card-body' style='margin-top:-35px'>
-               <a href='index.php?add_cart=$pro_id' class='card-link'> <button class='btn btn-sm mx-4 btn-primary' style:'float:right'> Add to cart </button></a>
-             </div>
-           </div>
-           </div>
-     
-           <script>
-             function border(){
-                 var selector_box = Document.querySelector('.singleProduct');
-                 selector_box.classList.add('border-image');
-             }
-           </script>
-             
-             ";
+            include("includes/include_single_product.php");
          }
                 all_pro_cart();
              

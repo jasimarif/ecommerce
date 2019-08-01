@@ -128,27 +128,6 @@
     }
 
 
-    #product_box
-    {
-        width: calc(100%-200px);
-        text-align: center;
-
-
-    }
-
-    #single_product
-    {
-        float: left;
-        padding-bottom : 30px;
-        padding-left: 60px;
-
-
-    }
-    #single_product img
-    {
-        border: 2px solid black;
-
-    }
 
     #products
     {

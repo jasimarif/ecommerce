@@ -14,7 +14,7 @@ include("functions/functions.php");
   <body>  
     <div class="wrapper"> 
       <!--SideBar-->
-      <?php include("includes/sidebar.php");   ?>          
+             
     <div id="contents">
       <!--NAVBAR SETTINGS-->       
       <?php include("includes/Navbar.php");   ?>
@@ -22,8 +22,8 @@ include("functions/functions.php");
       <?php include("includes/welcome_guest.php");   ?>
       <!--Product_area-->
         <div id="product_box"  class="" style="margin-top:60px;background-color:#F5F5F5" >
-          <div class="container-flex">
-            <div class="col-sm-12">
+          <div class="container">
+            <div class="col-sm-12" style="margin-left:3%;">
               <div class="row">
                   <?php 
                   getPro(); 
